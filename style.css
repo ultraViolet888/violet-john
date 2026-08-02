@@ -1,7 +1,13 @@
 ﻿.page {
     max-width: 900px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 40px 32px;
+    background-color: white;
+    min-height: 100vh;
+}
+
+body {
+    background-color: #f6f4f8;
 }
 
 .hero {
