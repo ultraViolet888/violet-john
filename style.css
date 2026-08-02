@@ -45,6 +45,16 @@
     padding-top: 24px;
 }
 
+.section-block {
+    margin-top: 48px;
+    border-top: 1px solid black;
+    padding-top: 24px;
+}
+
+.section-block h2 {
+    margin-top: 0;
+}
+
 .timeline-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
