@@ -55,25 +55,36 @@
     margin-top: 0;
 }
 
-.timeline-grid {
+.history-timeline {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    grid-template-columns: 140px repeat(3, 1fr);
+    gap: 20px 24px;
     margin-top: 24px;
 }
 
-.timeline-column {
+.timeline-header {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-bottom: 8px;
+}
+
+.timeline-year {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.timeline-node {
     border-left: 1px solid black;
-    padding-left: 16px;
+    padding-left: 12px;
 }
 
-.timeline-item {
-    margin-bottom: 20px;
-}
-
-.timeline-item strong,
-.timeline-item span {
+.timeline-node strong,
+.timeline-node span {
     display: block;
+}
+
+.timeline-node span {
+    font-size: 0.9rem;
 }
 
 .site-footer {
