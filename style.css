@@ -74,8 +74,20 @@
 }
 
 .timeline-node {
+    position: relative;
     border-left: 1px solid black;
-    padding-left: 12px;
+    padding-left: 16px;
+}
+
+.timeline-node::before {
+    content: "";
+    position: absolute;
+    left: -4.5px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
 }
 
 .timeline-node strong,
