@@ -99,6 +99,15 @@
     font-size: 0.9rem;
 }
 
+.current-node {
+    border-left: 2px solid #8a0faf;
+    padding-left: 16px;
+}
+
+.current-node::before {
+    background-color: #8a0faf;
+}
+
 .site-footer {
     margin-top: 64px;
     border-top: 1px solid black;
