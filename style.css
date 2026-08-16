@@ -1,4 +1,14 @@
-﻿.page {
+﻿:root {
+    --page-background: #f6f4f8;
+    --content-background: #ffffff;
+    --text-color: #111111;
+    --muted-text-color: #444444;
+    --accent-color: #8a0faf;
+    --border-color: #111111;
+    --node-background: #ffffff;
+}
+
+.page {
     max-width: 900px;
     margin: 0 auto;
     padding: 40px 32px;
