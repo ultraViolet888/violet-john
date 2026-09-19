@@ -1,8 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="violet" data-theme-preference="system">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Violet John</title>
+
+    <script>
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem("violet-theme") || "system";
+                const systemIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                const resolvedTheme =
+                    savedTheme === "system"
+                        ? (systemIsDark ? "night" : "violet")
+                        : savedTheme;
+
+                document.documentElement.dataset.themePreference = savedTheme;
+                document.documentElement.dataset.theme = resolvedTheme;
+            } catch (error) {
+                document.documentElement.dataset.theme = "violet";
+                document.documentElement.dataset.themePreference = "system";
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,11 +44,22 @@
                 Most of my career has involved complicated technical work with a lot of humans attached to it. I've gradually become more interested in humans.
             </p>
 
-            <nav class="hero-links">
+            <nav class="hero-links" aria-label="Contact links">
                 <a href="mailto:violetviola888@gmail.com">Email</a>
                 <a href="https://github.com/ultraviolet888">GitHub</a>
                 <a href="https://www.linkedin.com/in/violet-j/">LinkedIn</a>
             </nav>
+
+            <div class="theme-control">
+                <label for="theme-select">Theme</label>
+                <select id="theme-select" name="theme">
+                    <option value="system">System</option>
+                    <option value="violet">Violet</option>
+                    <option value="night">Night</option>
+                    <option value="paper">Paper</option>
+                    <option value="terminal">Terminal</option>
+                </select>
+            </div>
         </header>
 
         <section class="tabs">
@@ -234,22 +266,7 @@
         </footer>
     </main>
 
-    <script>
-        fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                const commitDate = new Date(data.commit.committer.date);
-
-                document.getElementById("last-updated").textContent =
-                    commitDate.toLocaleDateString();
-            })
-            .catch(function() {
-                document.getElementById("last-updated").textContent =
-                    "available on GitHub";
-            });
-    </script>
+    <script src="script.js"></script>
 </body>
- 
+
 </html>
