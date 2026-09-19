@@ -25,6 +25,17 @@ body {
     margin-bottom: 32px;
 }
 
+.hero-name {
+    margin-bottom: 0.25rem;
+}
+
+.legal-name {
+    margin: 0 0 1.5rem;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
 .tagline {
     font-size: 1.2rem;
     color: #8a0faf;
