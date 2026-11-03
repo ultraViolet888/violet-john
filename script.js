@@ -74,13 +74,19 @@ fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
 const historyTimeline = document.querySelector(".history-timeline");
 if (historyTimeline) {
     historyTimeline.addEventListener("click", (event) => {
-        const trigger = event.target.closest(".timeline-trigger");
-        if (!trigger || !historyTimeline.contains(trigger)) return;
-
+        const entry = event.target.closest(".timeline-event");
+        if (!entry || !historyTimeline.contains(entry)) return;
+        const trigger = entry.querySelector(".timeline-trigger");
+        if (!trigger) return;
         const details = document.getElementById(trigger.getAttribute("aria-controls"));
         if (!details) return;
 
         const expand = trigger.getAttribute("aria-expanded") !== "true";
+        historyTimeline.querySelectorAll(".timeline-trigger[aria-expanded='true']").forEach((openTrigger) => {
+            openTrigger.setAttribute("aria-expanded", "false");
+            const openDetails = document.getElementById(openTrigger.getAttribute("aria-controls"));
+            if (openDetails) openDetails.hidden = true;
+        });
         trigger.setAttribute("aria-expanded", String(expand));
         details.hidden = !expand;
     });
