@@ -318,6 +318,68 @@ a:focus-visible {
     background: var(--color-primary);
 }
 
+
+/* Interactive timeline: keep the four chronological tracks aligned. */
+.timeline-help {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.timeline-scroll {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-gutter: stable;
+}
+.timeline-scroll:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+.timeline-trigger {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.4rem;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    padding: 0;
+    cursor: pointer;
+}
+.timeline-trigger:hover strong,
+.timeline-trigger[aria-expanded="true"] strong {
+    color: var(--color-primary-strong);
+}
+.timeline-trigger:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+}
+.timeline-chevron {
+    display: inline;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+}
+.timeline-trigger[aria-expanded="true"] .timeline-chevron {
+    transform: rotate(180deg);
+}
+.timeline-detail {
+    margin: 0.6rem 0 0;
+    padding: 0.65rem 0.75rem;
+    background: var(--color-surface-raised);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+.timeline-node:has(.timeline-trigger[aria-expanded="true"]) {
+    border-left-color: var(--color-primary);
+}
+.timeline-node:has(.timeline-trigger[aria-expanded="true"])::before {
+    background: var(--color-primary);
+}
+
 .site-footer {
     margin-top: 64px;
     border-top: 1px solid var(--color-border);
@@ -336,8 +398,8 @@ a:focus-visible {
     }
 
     .history-timeline {
+        min-width: 690px;
         grid-template-columns: 105px repeat(3, minmax(150px, 1fr));
-        overflow-x: auto;
         padding-bottom: var(--space-4);
     }
 
