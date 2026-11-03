@@ -263,93 +263,12 @@ a:focus-visible {
     color: var(--color-text);
 }
 
-.history-timeline {
+/* A shared calendar scale with independent tracks for each category. */
+.timeline-scroll {
     --timeline-time-width: 140px;
     --timeline-gap: 24px;
+    --timeline-year-height: 125px;
     --timeline-track-width: calc((100% - var(--timeline-time-width) - 3 * var(--timeline-gap)) / 3);
-    position: relative;
-    display: grid;
-    grid-template-columns: var(--timeline-time-width) repeat(3, minmax(0, 1fr));
-    gap: 20px var(--timeline-gap);
-    margin-top: 24px;
-}
-
-/* Three independent rails run through the gaps between events. */
-.timeline-rail {
-    position: absolute;
-    top: calc(1.55em + 8px + 20px);
-    bottom: 0;
-    width: 1px;
-    background: var(--color-border);
-    pointer-events: none;
-}
-
-.timeline-rail-education {
-    left: calc(var(--timeline-time-width) + var(--timeline-gap));
-}
-
-.timeline-rail-career {
-    left: calc(var(--timeline-time-width) + 2 * var(--timeline-gap) + var(--timeline-track-width));
-}
-
-.timeline-rail-growth {
-    left: calc(var(--timeline-time-width) + 3 * var(--timeline-gap) + 2 * var(--timeline-track-width));
-}
-
-.timeline-header {
-    font-weight: bold;
-    color: var(--color-text);
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 8px;
-}
-
-.timeline-year {
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.timeline-node {
-    position: relative;
-    padding-left: 16px;
-}
-
-.timeline-node::before {
-    content: "";
-    position: absolute;
-    left: -4.5px;
-    top: 4px;
-    width: 8px;
-    height: 8px;
-    background: var(--color-text);
-    border-radius: 50%;
-}
-
-.timeline-node strong,
-.timeline-node span {
-    display: block;
-}
-
-.timeline-node span {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-}
-
-.current-node {
-    padding-left: 16px;
-}
-
-.current-node::before {
-    background: var(--color-primary);
-}
-
-
-/* Interactive timeline: keep the four chronological tracks aligned. */
-.timeline-help {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-.timeline-scroll {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scrollbar-gutter: stable;
@@ -357,6 +276,112 @@ a:focus-visible {
 .timeline-scroll:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
+}
+.timeline-help {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.timeline-headings {
+    display: grid;
+    grid-template-columns: var(--timeline-time-width) repeat(3, minmax(0, 1fr));
+    gap: var(--timeline-gap);
+    min-width: 690px;
+}
+.timeline-header {
+    font-weight: bold;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 8px;
+}
+.history-timeline {
+    position: relative;
+    min-width: 690px;
+    height: calc(17 * var(--timeline-year-height));
+    margin-top: 20px;
+}
+.timeline-years {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--timeline-time-width);
+}
+.timeline-years::before {
+    content: "";
+    position: absolute;
+    left: 72px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+}
+.timeline-year-mark {
+    position: absolute;
+    left: 0;
+    top: calc(var(--year-index) * var(--timeline-year-height));
+    transform: translateY(-0.25em);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+.timeline-year-mark::after {
+    content: "";
+    position: absolute;
+    left: 68px;
+    top: 0.65em;
+    width: 9px;
+    height: 1px;
+    background: var(--color-primary);
+}
+.timeline-rail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    pointer-events: none;
+}
+.timeline-rail-education,
+.timeline-event-education { left: calc(var(--timeline-time-width) + var(--timeline-gap)); }
+.timeline-rail-career,
+.timeline-event-career { left: calc(var(--timeline-time-width) + 2 * var(--timeline-gap) + var(--timeline-track-width)); }
+.timeline-rail-growth,
+.timeline-event-growth { left: calc(var(--timeline-time-width) + 3 * var(--timeline-gap) + 2 * var(--timeline-track-width)); }
+.timeline-event {
+    position: absolute;
+    top: calc(var(--event-position) * var(--timeline-year-height));
+    width: var(--timeline-track-width);
+    padding-left: 16px;
+    z-index: 1;
+}
+.timeline-event:focus-within {
+    z-index: 5;
+}
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -3.5px;
+    top: 28px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-text);
+    border-radius: 50%;
+}
+.timeline-node .timeline-event-date {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
+}
+.timeline-node strong,
+.timeline-node span {
+    display: block;
+}
+.timeline-node span {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+.timeline-node strong {
+    color: var(--color-text);
 }
 .timeline-trigger {
     display: flex;
@@ -379,7 +404,7 @@ a:focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 4px;
 }
-.timeline-chevron {
+.timeline-node .timeline-chevron {
     display: inline;
     font-size: 1.2rem;
     line-height: 1;
@@ -390,14 +415,22 @@ a:focus-visible {
     transform: rotate(180deg);
 }
 .timeline-detail {
+    position: relative;
+    z-index: 2;
     margin: 0.6rem 0 0;
     padding: 0.65rem 0.75rem;
     background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
     border-radius: var(--radius-sm);
     color: var(--color-text-muted);
     font-size: 0.85rem;
 }
-.timeline-node:has(.timeline-trigger[aria-expanded="true"])::before {
+.timeline-event:has(.timeline-trigger[aria-expanded="true"]) {
+    z-index: 6;
+}
+.timeline-event:has(.timeline-trigger[aria-expanded="true"])::before,
+.current-node::before {
     background: var(--color-primary);
 }
 
@@ -418,10 +451,8 @@ a:focus-visible {
         padding: 28px 18px;
     }
 
-    .history-timeline {
+    .timeline-scroll {
         --timeline-time-width: 105px;
-        min-width: 690px;
-        padding-bottom: var(--space-4);
     }
 
     .theme-control {
