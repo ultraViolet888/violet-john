@@ -353,18 +353,41 @@ a:focus-visible {
     padding-left: 16px;
     z-index: 1;
 }
+.timeline-interval {
+    height: calc(var(--event-duration) * var(--timeline-year-height));
+}
+.timeline-milestone {
+    min-height: 48px;
+}
+.timeline-duration-bar {
+    position: absolute;
+    left: -5px;
+    top: 0;
+    height: 100%;
+    width: 11px;
+    border-radius: 8px;
+    background: var(--color-primary);
+    opacity: 0.8;
+    cursor: pointer;
+}
+.timeline-milestone-dot {
+    position: absolute;
+    left: -6px;
+    top: -5px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--color-surface);
+    background: var(--color-primary);
+    cursor: pointer;
+}
+.timeline-event:hover .timeline-duration-bar,
+.timeline-event:focus-within .timeline-duration-bar {
+    opacity: 1;
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
 .timeline-event:focus-within {
     z-index: 5;
-}
-.timeline-event::before {
-    content: "";
-    position: absolute;
-    left: -3.5px;
-    top: 28px;
-    width: 8px;
-    height: 8px;
-    background: var(--color-text);
-    border-radius: 50%;
 }
 .timeline-node .timeline-event-date {
     display: block;
@@ -414,10 +437,14 @@ a:focus-visible {
 .timeline-trigger[aria-expanded="true"] .timeline-chevron {
     transform: rotate(180deg);
 }
+/* Details float over the calendar so expanding one cannot change the time scale. */
 .timeline-detail {
-    position: relative;
+    position: absolute;
+    top: 4.75rem;
+    left: 16px;
+    width: min(240px, calc(100% - 16px));
     z-index: 2;
-    margin: 0.6rem 0 0;
+    margin: 0;
     padding: 0.65rem 0.75rem;
     background: var(--color-surface-raised);
     border: 1px solid var(--color-border);
@@ -429,9 +456,9 @@ a:focus-visible {
 .timeline-event:has(.timeline-trigger[aria-expanded="true"]) {
     z-index: 6;
 }
-.timeline-event:has(.timeline-trigger[aria-expanded="true"])::before,
-.current-node::before {
-    background: var(--color-primary);
+.timeline-event:has(.timeline-trigger[aria-expanded="true"]) .timeline-duration-bar {
+    opacity: 1;
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
 }
 
 .site-footer {
@@ -453,6 +480,16 @@ a:focus-visible {
 
     .timeline-scroll {
         --timeline-time-width: 105px;
+    }
+
+    /* A compact panel opens underneath the selected label on small screens. */
+    .timeline-detail {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        margin-top: 0.6rem;
+        box-shadow: none;
     }
 
     .theme-control {
