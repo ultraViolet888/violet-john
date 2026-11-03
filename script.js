@@ -68,3 +68,20 @@ fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
         document.getElementById("last-updated").textContent =
             "available on GitHub";
     });
+
+
+/* Expand details without disturbing the shared chronological grid rows. */
+const historyTimeline = document.querySelector(".history-timeline");
+if (historyTimeline) {
+    historyTimeline.addEventListener("click", (event) => {
+        const trigger = event.target.closest(".timeline-trigger");
+        if (!trigger || !historyTimeline.contains(trigger)) return;
+
+        const details = document.getElementById(trigger.getAttribute("aria-controls"));
+        if (!details) return;
+
+        const expand = trigger.getAttribute("aria-expanded") !== "true";
+        trigger.setAttribute("aria-expanded", String(expand));
+        details.hidden = !expand;
+    });
+}
