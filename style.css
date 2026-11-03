@@ -264,10 +264,36 @@ a:focus-visible {
 }
 
 .history-timeline {
+    --timeline-time-width: 140px;
+    --timeline-gap: 24px;
+    --timeline-track-width: calc((100% - var(--timeline-time-width) - 3 * var(--timeline-gap)) / 3);
+    position: relative;
     display: grid;
-    grid-template-columns: 140px repeat(3, 1fr);
-    gap: 20px 24px;
+    grid-template-columns: var(--timeline-time-width) repeat(3, minmax(0, 1fr));
+    gap: 20px var(--timeline-gap);
     margin-top: 24px;
+}
+
+/* Three independent rails run through the gaps between events. */
+.timeline-rail {
+    position: absolute;
+    top: calc(1.55em + 8px + 20px);
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    pointer-events: none;
+}
+
+.timeline-rail-education {
+    left: calc(var(--timeline-time-width) + var(--timeline-gap));
+}
+
+.timeline-rail-career {
+    left: calc(var(--timeline-time-width) + 2 * var(--timeline-gap) + var(--timeline-track-width));
+}
+
+.timeline-rail-growth {
+    left: calc(var(--timeline-time-width) + 3 * var(--timeline-gap) + 2 * var(--timeline-track-width));
 }
 
 .timeline-header {
@@ -284,7 +310,6 @@ a:focus-visible {
 
 .timeline-node {
     position: relative;
-    border-left: 1px solid var(--color-border);
     padding-left: 16px;
 }
 
@@ -310,7 +335,6 @@ a:focus-visible {
 }
 
 .current-node {
-    border-left: 2px solid var(--color-primary);
     padding-left: 16px;
 }
 
@@ -373,9 +397,6 @@ a:focus-visible {
     color: var(--color-text-muted);
     font-size: 0.85rem;
 }
-.timeline-node:has(.timeline-trigger[aria-expanded="true"]) {
-    border-left-color: var(--color-primary);
-}
 .timeline-node:has(.timeline-trigger[aria-expanded="true"])::before {
     background: var(--color-primary);
 }
@@ -398,8 +419,8 @@ a:focus-visible {
     }
 
     .history-timeline {
+        --timeline-time-width: 105px;
         min-width: 690px;
-        grid-template-columns: 105px repeat(3, minmax(150px, 1fr));
         padding-bottom: var(--space-4);
     }
 
