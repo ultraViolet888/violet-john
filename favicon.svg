@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="V with violet flower">
+  <style>
+    .letter { fill: #23172b; }
+    @media (prefers-color-scheme: dark) { .letter { fill: #e7d9fb; } }
+  </style>
+  <path class="letter" d="M29 94 C29 74 34 39 28 29 C20 16 9 26 8 38 C7 45 15 46 20 36 C23 30 29 33 27 40 C23 53 8 58 3 45 C-3 29 15 9 32 15 C48 20 45 44 39 72 L36 83 C47 70 58 53 68 41 L73 45 C58 63 44 84 33 96 Q28 99 29 94 Z"/>
+  <path fill="#6b853f" d="M69 45 Q73 32 78 34 L83 43 Q76 41 69 45Z"/>
+  <ellipse cx="78" cy="18" rx="12" ry="16" transform="rotate(-18 78 18)" fill="#a77ae8"/>
+  <ellipse cx="93" cy="29" rx="11" ry="15" transform="rotate(38 93 29)" fill="#7650c6"/>
+  <ellipse cx="86" cy="45" rx="13" ry="15" transform="rotate(-20 86 45)" fill="#aa82ea"/>
+  <ellipse cx="65" cy="40" rx="12" ry="12" transform="rotate(-24 65 40)" fill="#7650c6"/>
+  <ellipse cx="67" cy="24" rx="11" ry="14" transform="rotate(-37 67 24)" fill="#9870dc"/>
+  <path fill="#fff9dd" d="M78 30 l2 -7 3 7 7 -3 -4 7 7 3 -8 2 -1 8 -5 -7 -6 5 1 -8 -7 -3 8 -2Z"/>
+  <circle cx="80" cy="35" r="4" fill="#f7de70"/>
+</svg>
