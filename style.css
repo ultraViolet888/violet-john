@@ -46,6 +46,11 @@ html[data-theme="violet"] {
     --color-border: #ddd4e1;
     --color-focus: #8f63aa;
     --color-on-primary: #ffffff;
+
+    /* Independent timeline track colors, shared by every component in each track. */
+    --timeline-education: #8963b2;
+    --timeline-career: #af7cc8;
+    --timeline-growth: #bf69b4;
 }
 
 /* Dark mode */
@@ -66,6 +71,10 @@ html[data-theme="night"] {
     --color-border: #44394a;
     --color-focus: #d7b5e7;
     --color-on-primary: #211825;
+
+    --timeline-education: #b69de6;
+    --timeline-career: #c88fd9;
+    --timeline-growth: #e3a0d4;
 }
 
 /* Warm paper + violet ink */
@@ -86,6 +95,10 @@ html[data-theme="paper"] {
     --color-border: #d8cdbd;
     --color-focus: #7c5988;
     --color-on-primary: #ffffff;
+
+    --timeline-education: #8059a2;
+    --timeline-career: #a16bbc;
+    --timeline-growth: #ad539d;
 }
 
 /* A restrained technical easter egg */
@@ -106,6 +119,10 @@ html[data-theme="terminal"] {
     --color-border: #394039;
     --color-focus: #ccb0df;
     --color-on-primary: #18131c;
+
+    --timeline-education: #a68bd1;
+    --timeline-career: #bf8fd6;
+    --timeline-growth: #d796c5;
 }
 
 *,
@@ -263,59 +280,220 @@ a:focus-visible {
     color: var(--color-text);
 }
 
-.history-timeline {
-    display: grid;
-    grid-template-columns: 140px repeat(3, 1fr);
-    gap: 20px 24px;
-    margin-top: 24px;
+/* A shared calendar scale with independent tracks for each category. */
+.timeline-scroll {
+    --timeline-time-width: 140px;
+    --timeline-gap: 24px;
+    --timeline-year-height: 125px;
+    --timeline-track-width: calc((100% - var(--timeline-time-width) - 3 * var(--timeline-gap)) / 3);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-gutter: stable;
 }
-
+.timeline-scroll:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+.timeline-help {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.timeline-headings {
+    display: grid;
+    grid-template-columns: var(--timeline-time-width) repeat(3, minmax(0, 1fr));
+    gap: var(--timeline-gap);
+    min-width: 690px;
+}
 .timeline-header {
     font-weight: bold;
     color: var(--color-text);
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 8px;
 }
-
-.timeline-year {
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.timeline-node {
+.history-timeline {
     position: relative;
-    border-left: 1px solid var(--color-border);
-    padding-left: 16px;
+    min-width: 690px;
+    height: calc(17 * var(--timeline-year-height));
+    margin-top: 20px;
 }
-
-.timeline-node::before {
+.timeline-years {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--timeline-time-width);
+}
+.timeline-years::before {
     content: "";
     position: absolute;
-    left: -4.5px;
-    top: 4px;
-    width: 8px;
-    height: 8px;
-    background: var(--color-text);
-    border-radius: 50%;
+    left: 72px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
 }
+.timeline-year-mark {
+    position: absolute;
+    left: 0;
+    top: calc(var(--year-index) * var(--timeline-year-height));
+    transform: translateY(-0.25em);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+.timeline-year-mark::after {
+    content: "";
+    position: absolute;
+    left: 68px;
+    top: 0.65em;
+    width: 9px;
+    height: 1px;
+    background: var(--color-primary);
+}
+.timeline-rail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    pointer-events: none;
+}
+.timeline-rail-education,
+.timeline-event-education { left: calc(var(--timeline-time-width) + var(--timeline-gap)); }
+.timeline-rail-career,
+.timeline-event-career { left: calc(var(--timeline-time-width) + 2 * var(--timeline-gap) + var(--timeline-track-width)); }
+.timeline-rail-growth,
+.timeline-event-growth { left: calc(var(--timeline-time-width) + 3 * var(--timeline-gap) + 2 * var(--timeline-track-width)); }
 
+.timeline-event-education { --timeline-track-color: var(--timeline-education); }
+.timeline-event-career { --timeline-track-color: var(--timeline-career); }
+.timeline-event-growth { --timeline-track-color: var(--timeline-growth); }
+.timeline-rail-education { background: var(--timeline-education); opacity: 0.35; }
+.timeline-rail-career { background: var(--timeline-career); opacity: 0.35; }
+.timeline-rail-growth { background: var(--timeline-growth); opacity: 0.35; }
+.timeline-header:nth-child(2) { border-bottom-color: var(--timeline-education); }
+.timeline-header:nth-child(3) { border-bottom-color: var(--timeline-career); }
+.timeline-header:nth-child(4) { border-bottom-color: var(--timeline-growth); }
+
+.timeline-event {
+    position: absolute;
+    top: calc(var(--event-position) * var(--timeline-year-height));
+    width: var(--timeline-track-width);
+    padding-left: 16px;
+    z-index: 1;
+}
+.timeline-interval {
+    height: calc(var(--event-duration) * var(--timeline-year-height));
+}
+.timeline-milestone {
+    min-height: 48px;
+}
+.timeline-duration-bar {
+    position: absolute;
+    left: -5px;
+    top: 0;
+    height: 100%;
+    width: 11px;
+    border-radius: 8px;
+    background: var(--timeline-track-color);
+    opacity: 0.85;
+    cursor: pointer;
+}
+.timeline-milestone-dot {
+    position: absolute;
+    left: -6px;
+    top: -5px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--color-surface);
+    background: var(--timeline-track-color);
+    cursor: pointer;
+}
+.timeline-event:hover .timeline-duration-bar,
+.timeline-event:focus-within .timeline-duration-bar {
+    opacity: 1;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--timeline-track-color) 20%, transparent);
+}
+.timeline-event:focus-within {
+    z-index: 5;
+}
 .timeline-node strong,
 .timeline-node span {
     display: block;
 }
-
 .timeline-node span {
     color: var(--color-text-muted);
     font-size: 0.9rem;
 }
-
-.current-node {
-    border-left: 2px solid var(--color-primary);
-    padding-left: 16px;
+.timeline-node strong {
+    color: var(--color-text);
 }
-
-.current-node::before {
-    background: var(--color-primary);
+.timeline-trigger {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.4rem;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    padding: 0;
+    cursor: pointer;
+}
+.timeline-trigger:hover strong,
+.timeline-trigger[aria-expanded="true"] strong {
+    color: var(--color-primary-strong);
+}
+.timeline-trigger:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+}
+.timeline-node .timeline-selection-dot {
+    display: inline-block;
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--timeline-track-color);
+    border-radius: 50%;
+    background: transparent;
+}
+.timeline-trigger[aria-expanded="true"] .timeline-selection-dot {
+    background: var(--timeline-track-color);
+}
+/* Details float over the calendar so expanding one cannot change the time scale. */
+.timeline-detail {
+    position: absolute;
+    top: 2.75rem;
+    left: 16px;
+    width: min(240px, calc(100% - 16px));
+    z-index: 2;
+    margin: 0;
+    padding: 0.65rem 0.75rem;
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+.timeline-node .timeline-detail-date,
+.timeline-node .timeline-detail-organization {
+    display: block;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+.timeline-node .timeline-detail-organization {
+    color: var(--color-text-muted);
+    margin-bottom: 0.6rem;
+}
+.timeline-event:has(.timeline-trigger[aria-expanded="true"]) {
+    z-index: 6;
+}
+.timeline-event:has(.timeline-trigger[aria-expanded="true"]) .timeline-duration-bar {
+    opacity: 1;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--timeline-track-color) 20%, transparent);
 }
 
 .site-footer {
@@ -335,10 +513,18 @@ a:focus-visible {
         padding: 28px 18px;
     }
 
-    .history-timeline {
-        grid-template-columns: 105px repeat(3, minmax(150px, 1fr));
-        overflow-x: auto;
-        padding-bottom: var(--space-4);
+    .timeline-scroll {
+        --timeline-time-width: 105px;
+    }
+
+    /* A compact panel opens underneath the selected label on small screens. */
+    .timeline-detail {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        margin-top: 0.6rem;
+        box-shadow: none;
     }
 
     .theme-control {
