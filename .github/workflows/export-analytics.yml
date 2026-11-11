@@ -1,0 +1,43 @@
+name: Export aggregate visitor analytics
+
+on:
+  schedule:
+    - cron: "20 9 * * *" # Daily; exports the previous UTC day.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: analytics-daily-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.ref == 'refs/heads/main' && vars.UMAMI_WEBSITE_ID != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Generate public-safe daily aggregate
+        env:
+          UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+          UMAMI_API_KEY: ${{ secrets.UMAMI_API_KEY }}
+        run: python3 tools/export_analytics.py
+
+      - name: Commit aggregate JSON if it changed
+        shell: bash
+        run: |
+          git add analytics/daily/
+          if git diff --cached --quiet; then
+            echo "No new analytics to save"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update aggregate site analytics"
+          git push
