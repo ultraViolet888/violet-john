@@ -210,7 +210,7 @@ a:focus-visible {
     margin-top: var(--space-6);
 }
 
-/* Scalable SVG masks inherit the theme color without hard-coded SVG fills. */
+/* Inline SVG contact icons inherit the active theme color. */
 .hero-links a {
     display: inline-flex;
     align-items: center;
@@ -237,27 +237,9 @@ a:focus-visible {
 }
 .hero-link-icon {
     display: block;
+    flex: 0 0 auto;
     width: 24px;
     height: 24px;
-    background-color: currentColor;
-    -webkit-mask-position: center;
-    mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-    mask-size: contain;
-}
-.hero-link-icon-email {
-    -webkit-mask-image: url("assets/icons/email.svg");
-    mask-image: url("assets/icons/email.svg");
-}
-.hero-link-icon-github {
-    -webkit-mask-image: url("assets/icons/github.svg");
-    mask-image: url("assets/icons/github.svg");
-}
-.hero-link-icon-linkedin {
-    -webkit-mask-image: url("assets/icons/linkedin.svg");
-    mask-image: url("assets/icons/linkedin.svg");
 }
 
 .theme-control {
