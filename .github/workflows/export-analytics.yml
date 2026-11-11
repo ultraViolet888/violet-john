@@ -23,6 +23,9 @@ jobs:
         with:
           persist-credentials: true
 
+      - name: Test aggregation privacy rules
+        run: python3 -m unittest discover -s tests -p "test_analytics_export.py"
+
       - name: Generate public-safe daily aggregate
         env:
           UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
