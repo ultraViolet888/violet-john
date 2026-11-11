@@ -101,6 +101,6 @@ if (bookSize && bookGrid) {
     });
 }
 document.querySelectorAll(".book-cover").forEach((cover) => {
-    cover.addEventListener("error", () => { cover.hidden = true; });
-    if (cover.complete && cover.naturalWidth === 0) cover.hidden = true;
+    cover.addEventListener("error", () => { cover.classList.add("book-cover-unavailable"); });
+    if (cover.complete && cover.naturalWidth === 0) cover.classList.add("book-cover-unavailable");
 });
