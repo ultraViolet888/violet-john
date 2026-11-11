@@ -598,7 +598,7 @@ a:focus-visible {
     text-align: center;
     background: var(--color-primary-soft);
 }
-.book-cover[hidden] { display: none; }
+.book-cover.book-cover-unavailable { opacity: 0; }
 .book-card-body { padding: var(--space-3); }
 .book-card h3 { margin: 0 0 var(--space-1); font-size: 0.98rem; line-height: 1.35; }
 .book-author { margin: 0 0 var(--space-3); color: var(--color-text-muted); font-size: 0.8rem; }
