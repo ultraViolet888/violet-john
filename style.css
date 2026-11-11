@@ -625,7 +625,6 @@ a:focus-visible {
     opacity: 1;
     visibility: visible;
 }
-.book-cover-credit { font-size: 0.78rem; color: var(--color-text-muted); margin-top: var(--space-4); }
 @media (prefers-reduced-motion: reduce) {
     .book-card { transform: none !important; }
 }
