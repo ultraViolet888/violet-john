@@ -91,3 +91,16 @@ if (historyTimeline) {
         details.hidden = !expand;
     });
 }
+
+/* Responsive reading shelf controls and graceful cover fallbacks. */
+const bookSize = document.querySelector("#book-size");
+const bookGrid = document.querySelector(".book-grid");
+if (bookSize && bookGrid) {
+    bookSize.addEventListener("input", () => {
+        bookGrid.style.setProperty("--book-min-width", bookSize.value + "px");
+    });
+}
+document.querySelectorAll(".book-cover").forEach((cover) => {
+    cover.addEventListener("error", () => { cover.hidden = true; });
+    if (cover.complete && cover.naturalWidth === 0) cover.hidden = true;
+});
