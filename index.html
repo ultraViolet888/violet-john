@@ -9,7 +9,10 @@
     <script>
         (function () {
             try {
-                const savedTheme = localStorage.getItem("violet-theme") || "system";
+                const storedTheme = localStorage.getItem("violet-theme") || "system";
+                const savedTheme = ["system", "violet", "night", "cyberpunk"].includes(storedTheme)
+                    ? storedTheme
+                    : "system";
                 const systemIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
                 const resolvedTheme =
                     savedTheme === "system"
@@ -46,9 +49,15 @@
             </p>
 
             <nav class="hero-links" aria-label="Contact links">
-                <a href="mailto:violetviola888@gmail.com">Email</a>
-                <a href="https://github.com/ultraviolet888">GitHub</a>
-                <a href="https://www.linkedin.com/in/violet-j/">LinkedIn</a>
+                <a href="mailto:violetviola888@gmail.com" aria-label="Email" title="Email">
+                    <span class="hero-link-icon hero-link-icon-email" aria-hidden="true"></span>
+                </a>
+                <a href="https://github.com/ultraviolet888" aria-label="GitHub profile" title="GitHub profile" target="_blank" rel="noopener noreferrer">
+                    <span class="hero-link-icon hero-link-icon-github" aria-hidden="true"></span>
+                </a>
+                <a href="https://www.linkedin.com/in/violet-j/" aria-label="LinkedIn profile" title="LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                    <span class="hero-link-icon hero-link-icon-linkedin" aria-hidden="true"></span>
+                </a>
             </nav>
 
             <div class="theme-control">
@@ -57,8 +66,7 @@
                     <option value="system">System</option>
                     <option value="violet">Violet</option>
                     <option value="night">Night</option>
-                    <option value="paper">Paper</option>
-                    <option value="terminal">Terminal</option>
+                    <option value="cyberpunk">Cyberpunk</option>
                 </select>
             </div>
         </header>
