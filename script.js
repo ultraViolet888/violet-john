@@ -41,6 +41,10 @@ if (themeSelect) {
         const preference = event.target.value;
         saveTheme(preference);
         applyTheme(preference);
+        // Anonymous interaction data only; no visitor identifiers.
+        if (window.umami?.track) {
+            window.umami.track("theme-change", { theme: preference });
+        }
     });
 }
 
@@ -92,6 +96,11 @@ if (historyTimeline) {
         });
         trigger.setAttribute("aria-expanded", String(expand));
         details.hidden = !expand;
+        if (expand && window.umami?.track) {
+            window.umami.track("timeline-expand", {
+                item: trigger.querySelector("strong")?.textContent?.trim() || "Unknown"
+            });
+        }
     });
 }
 
