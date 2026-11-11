@@ -197,26 +197,159 @@
             </ul>
         </section>
 
-        <section class="section-block">
+        <section class="section-block" id="reading">
             <h2>Things I've been reading</h2>
-
-            <p>
-                I read quite a bit about organizations, manufacturing, software, leadership, and why groups of otherwise sensible people occasionally make work astonishingly difficult.
-            </p>
-
-            <ul>
-                <li>The Phoenix Project</li>
-                <li>The DevOps Handbook</li>
-                <li>The Unicorn Project</li>
-                <li>The Fearless Organization</li>
-                <li>Turn the Ship Around!</li>
-                <li>Deep Work</li>
-                <li>Team Topologies</li>
-                <li>Wiring the Winning Organization</li>
-                <li>The Toyota Way</li>
-                <li>Industrial DevOps</li>
-                <li>The Goal</li>
-            </ul>
+            <p>I read quite a bit about organizations, manufacturing, software, leadership, and why groups of otherwise sensible people occasionally make work astonishingly difficult.</p>
+            <div class="book-grid-controls">
+                <label for="book-size">Cover size</label>
+                <input id="book-size" type="range" min="130" max="230" step="10" value="165" aria-label="Adjust book card width">
+            </div>
+            <div class="book-grid" aria-label="Books on my reading shelf">
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781950508945-M.jpg?default=false" alt="Cover of The Phoenix Project" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>The Phoenix Project</h3>
+                        <p class="book-author">Gene Kim, Kevin Behr &amp; George Spafford</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about The Phoenix Project">Why it's on the shelf</summary>
+                            <p>A story of bottlenecks, collaboration, and changing how technology work flows.</p>
+                        </details>
+                        <a class="book-source" href="https://www.simonandschuster.com/books/The-Phoenix-Project/Gene-Kim/The-Phoenix-Project/9781950508945" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781950508402-M.jpg?default=false" alt="Cover of The DevOps Handbook" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>The DevOps Handbook</h3>
+                        <p class="book-author">Gene Kim and collaborators</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about The DevOps Handbook">Why it's on the shelf</summary>
+                            <p>Practical ways to improve delivery, feedback, reliability, and learning.</p>
+                        </details>
+                        <a class="book-source" href="https://www.simonandschuster.com/books/The-DevOps-Handbook-2nd-Edition/Gene-Kim/9781950508402" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781942788768-M.jpg?default=false" alt="Cover of The Unicorn Project" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>The Unicorn Project</h3>
+                        <p class="book-author">Gene Kim</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about The Unicorn Project">Why it's on the shelf</summary>
+                            <p>A companion story about developers navigating bureaucracy and finding ways to deliver.</p>
+                        </details>
+                        <a class="book-source" href="https://www.simonandschuster.com/books/The-Unicorn-Project/Gene-Kim/The-Phoenix-Project/9781942788768" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781119477242-M.jpg?default=false" alt="Cover of The Fearless Organization" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>The Fearless Organization</h3>
+                        <p class="book-author">Amy C. Edmondson</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about The Fearless Organization">Why it's on the shelf</summary>
+                            <p>Why psychological safety matters for speaking up, learning, and improving together.</p>
+                        </details>
+                        <a class="book-source" href="https://openlibrary.org/isbn/9781119477242" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781591846406-M.jpg?default=false" alt="Cover of Turn the Ship Around!" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>Turn the Ship Around!</h3>
+                        <p class="book-author">L. David Marquet</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about Turn the Ship Around!">Why it's on the shelf</summary>
+                            <p>A firsthand case for developing leaders and distributing decision-making.</p>
+                        </details>
+                        <a class="book-source" href="https://www.penguinrandomhouse.com/books/314163/turn-the-ship-around-by-l-david-marquet/" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781455586660-M.jpg?default=false" alt="Cover of Deep Work" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>Deep Work</h3>
+                        <p class="book-author">Cal Newport</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about Deep Work">Why it's on the shelf</summary>
+                            <p>An exploration of sustained concentration in a distracted working world.</p>
+                        </details>
+                        <a class="book-source" href="https://openlibrary.org/isbn/9781455586660" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781942788812-M.jpg?default=false" alt="Cover of Team Topologies" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>Team Topologies</h3>
+                        <p class="book-author">Matthew Skelton &amp; Manuel Pais</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about Team Topologies">Why it's on the shelf</summary>
+                            <p>How team boundaries and interaction patterns shape software delivery.</p>
+                        </details>
+                        <a class="book-source" href="https://teamtopologies.squarespace.com/book" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781950508426-M.jpg?default=false" alt="Cover of Wiring the Winning Organization" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>Wiring the Winning Organization</h3>
+                        <p class="book-author">Gene Kim &amp; Steven J. Spear</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about Wiring the Winning Organization">Why it's on the shelf</summary>
+                            <p>A look at designing conditions that help organizations solve problems and learn.</p>
+                        </details>
+                        <a class="book-source" href="https://itrevolution.com/product/wiring-the-winning-organization/" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781260468519-M.jpg?default=false" alt="Cover of The Toyota Way" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>The Toyota Way</h3>
+                        <p class="book-author">Jeffrey K. Liker</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about The Toyota Way">Why it's on the shelf</summary>
+                            <p>The philosophy and practices behind Toyota's approach to continuous improvement.</p>
+                        </details>
+                        <a class="book-source" href="https://www.mheducation.com/highered/mhp/product/toyota-way-second-edition-14-management-principles-world-s-greatest-manufacturer.html" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781950508792-M.jpg?default=false" alt="Cover of Industrial DevOps" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>Industrial DevOps</h3>
+                        <p class="book-author">Suzette Johnson &amp; Robin Yeman</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about Industrial DevOps">Why it's on the shelf</summary>
+                            <p>Applying Lean, Agile, and DevOps principles to complex cyber-physical systems.</p>
+                        </details>
+                        <a class="book-source" href="https://www.simonandschuster.net/books/Industrial-DevOps/Dr-Suzette-Johnson/9781950508792" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780884271956-M.jpg?default=false" alt="Cover of The Goal" loading="lazy" decoding="async" width="180" height="270">
+                    <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
+                    <div class="book-card-body">
+                        <h3>The Goal</h3>
+                        <p class="book-author">Eliyahu M. Goldratt &amp; Jeff Cox</p>
+                        <details class="book-notes">
+                            <summary title="Read a short note about The Goal">Why it's on the shelf</summary>
+                            <p>A manufacturing novel about constraints, flow, and systems thinking.</p>
+                        </details>
+                        <a class="book-source" href="https://openlibrary.org/isbn/9780884271956" target="_blank" rel="noopener noreferrer">Book details <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+            </div>
+            <p class="book-cover-credit">Book-cover images are requested from <a href="https://openlibrary.org/dev/docs/api/covers" target="_blank" rel="noopener noreferrer">Open Library Covers</a>. Editions may vary; missing covers show a text fallback.</p>
         </section>
 
         <section class="section-block">
