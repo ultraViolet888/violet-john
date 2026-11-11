@@ -1,5 +1,6 @@
 const themeSelect = document.querySelector("#theme-select");
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const supportedThemes = new Set(["system", "violet", "night", "cyberpunk"]);
 
 function resolveTheme(preference) {
     if (preference === "system") {
@@ -10,6 +11,8 @@ function resolveTheme(preference) {
 }
 
 function applyTheme(preference) {
+    // Migrate a previously saved Paper or Terminal selection to System.
+    if (!supportedThemes.has(preference)) preference = "system";
     const resolvedTheme = resolveTheme(preference);
 
     document.documentElement.dataset.themePreference = preference;

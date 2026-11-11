@@ -9,7 +9,10 @@
     <script>
         (function () {
             try {
-                const savedTheme = localStorage.getItem("violet-theme") || "system";
+                const storedTheme = localStorage.getItem("violet-theme") || "system";
+                const savedTheme = ["system", "violet", "night", "cyberpunk"].includes(storedTheme)
+                    ? storedTheme
+                    : "system";
                 const systemIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
                 const resolvedTheme =
                     savedTheme === "system"
@@ -46,19 +49,24 @@
             </p>
 
             <nav class="hero-links" aria-label="Contact links">
-                <a href="mailto:violetviola888@gmail.com">Email</a>
-                <a href="https://github.com/ultraviolet888">GitHub</a>
-                <a href="https://www.linkedin.com/in/violet-j/">LinkedIn</a>
+                <a href="mailto:violetviola888@gmail.com" aria-label="Email" title="Email">
+                    <svg class="hero-link-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+                </a>
+                <a href="https://github.com/ultraviolet888" aria-label="GitHub profile" title="GitHub profile" target="_blank" rel="noopener noreferrer">
+                    <svg class="hero-link-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/violet-j/" aria-label="LinkedIn profile" title="LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                    <svg class="hero-link-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.211c.837 0 1.358-.554 1.358-1.248-.015-.71-.52-1.249-1.342-1.249-.82 0-1.358.54-1.358 1.249 0 .694.52 1.248 1.327 1.248h.015zm4.908 8.211V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.633v3.866h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.17H6.25c.03.678 0 7.225 0 7.225h2.401z"/></svg>
+                </a>
             </nav>
 
             <div class="theme-control">
-                <label for="theme-select">Theme</label>
+                <label for="theme-select" class="visually-hidden">Theme</label>
                 <select id="theme-select" name="theme">
                     <option value="system">System</option>
                     <option value="violet">Violet</option>
                     <option value="night">Night</option>
-                    <option value="paper">Paper</option>
-                    <option value="terminal">Terminal</option>
+                    <option value="cyberpunk">Cyberpunk</option>
                 </select>
             </div>
         </header>
@@ -186,7 +194,7 @@
             <ul>
                 <li>Personal website</li>
                 <li>Process revolutions essay</li>
-                <li>Project Management Profession certification</li>
+                <li>Project Management Professional (PMP) certification</li>
             </ul>
         </section>
 
@@ -198,12 +206,13 @@
             </p>
 
             <ul>
-                <li>Why do good process ideas turn into bad bureaucracy?</li>
-                <li>What actually makes it safe to disagree at work?</li>
-                <li>How technical does a product person need to be?</li>
-                <li>What happens when nobody owns the spaces between teams?</li>
-                <li>Can you build a professional identity that still sounds like a person?</li>
-                <li>How much process is enough?</li>
+                <li>What gets lost when frameworks and tools replace curiosity about the people doing the work?</li>
+                <li>Can a coach help a team discover what it already knows without prescribing the answer?</li>
+                <li>How do I make room for being a generalist in a world that rewards specialization?</li>
+                <li>If someone has already said it, what makes an idea worth sharing anyway?</li>
+                <li>How can AI help us make useful things without outsourcing our judgment?</li>
+                <li>What does psychological safety actually look like when disagreement has consequences?</li>
+                <li>How do we turn concern about a problem into a small, concrete action?</li>
             </ul>
         </section>
 
@@ -303,23 +312,25 @@
             <h2>How This Site Is Built</h2>
 
             <p>
-                This website is also a learning project: a static site built incrementally.
+                A lightweight, dependency-free portfolio built in the open, one small pull request at a time. No front-end framework or build system yet.
             </p>
 
-            <h3>Current</h3>
+            <h3>Built with</h3>
             <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>GitHub Pages</li>
+                <li>Semantic HTML5 for structure, links, and accessible controls</li>
+                <li>CSS3 with Grid, responsive layouts, custom properties, and multiple color themes</li>
+                <li>Vanilla JavaScript for interactive timeline details, theme selection, and image fallbacks</li>
+                <li>Locally hosted JPEG book covers and an SVG favicon</li>
+                <li>Git and GitHub pull requests for version control and incremental changes</li>
+                <li>GitHub Pages for static-site hosting and publishing</li>
+                <li>GitHub API for displaying the repository’s latest update date</li>
             </ul>
 
-            <h3>Planned</h3>
+            <h3>On the roadmap</h3>
             <ul>
-                <li>CI/CD</li>
-                <li>Testing</li>
-                <li>Accessibility checks</li>
-                <li>Serverless APIs</li>
+                <li>Automated testing, accessibility checks, and a more deliberate CI/CD pipeline</li>
+                <li>Visitor metrics and product analytics</li>
+                <li>Additional interactive features and, eventually, serverless APIs</li>
             </ul>
         </section>
 
