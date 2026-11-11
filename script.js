@@ -91,3 +91,9 @@ if (historyTimeline) {
         details.hidden = !expand;
     });
 }
+
+/* Graceful cover fallbacks for unavailable images. */
+document.querySelectorAll(".book-cover").forEach((cover) => {
+    cover.addEventListener("error", () => { cover.classList.add("book-cover-unavailable"); });
+    if (cover.complete && cover.naturalWidth === 0) cover.classList.add("book-cover-unavailable");
+});
