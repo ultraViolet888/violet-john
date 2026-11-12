@@ -89,7 +89,7 @@ if (historyTimeline) {
         for (let year = 2010; year <= 2026; year++) {
             const label = document.createElement("span");
             label.className = "timeline-mobile-year";
-            label.style.top = (36 + (2026 - year) * 44) + "px";
+            label.style.top = (52 + (2026 - year) * 44) + "px";
             label.textContent = String(year);
             mobileMap.append(label);
         }
@@ -121,7 +121,7 @@ if (historyTimeline) {
                 const duration = parseFloat(entry.style.getPropertyValue("--event-duration")) || 0;
                 const fraction = (tracks.indexOf(track) + 0.5) / 3;
                 const interval = entry.classList.contains("timeline-interval");
-                marker.style.top = (36 + (16 - position - (interval ? duration : 0)) * 44) + "px";
+                marker.style.top = (52 + (16 - position - (interval ? duration : 0)) * 44) + "px";
                 if (interval) marker.style.height = Math.max(12, duration * 44) + "px";
                 marker.style.left = "calc(" + (44 * (1 - fraction)).toFixed(2) +
                     "px + " + (fraction * 100).toFixed(4) + "%)";
