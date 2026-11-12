@@ -892,15 +892,49 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
         outline-offset: 7px;
     }
     .timeline-mobile-details {
-        min-height: 85px;
-        margin-top: 0.7rem;
-        padding: 1rem;
-        background: var(--color-surface-raised);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-md);
+        position: fixed;
+        z-index: 50;
+        left: max(12px, env(safe-area-inset-left));
+        right: max(12px, env(safe-area-inset-right));
+        bottom: max(12px, env(safe-area-inset-bottom));
+        max-height: min(42dvh, 360px);
+        overflow: auto;
         overflow-wrap: anywhere;
+        background: var(--color-surface-raised);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+        border-top: 3px solid var(--mobile-selected-color, var(--color-primary));
+        border-radius: var(--radius-md);
+        box-shadow: 0 10px 35px rgb(0 0 0 / 0.28);
+        padding: 0.75rem 1rem 1rem;
     }
-    .timeline-mobile-details > h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+    .timeline-mobile-details[hidden] { display: none; }
+    .timeline-mobile-details-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        position: sticky;
+        top: -0.75rem;
+        background: var(--color-surface-raised);
+        padding: 0 0 0.35rem;
+    }
+    .timeline-mobile-details-hint {
+        color: var(--color-text-muted);
+        font-size: 0.75rem;
+    }
+    .timeline-mobile-close {
+        border: 1px solid var(--color-border);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        line-height: 1;
+        font-size: 1.35rem;
+        background: var(--color-surface);
+        color: var(--color-text);
+        cursor: pointer;
+    }
+    .timeline-mobile-details-body > h3 { margin: 0 0 0.4rem; font-size: 1rem; }
     .timeline-mobile-details p { margin: 0.3rem 0; }
     .timeline-mobile-details .timeline-detail-date,
     .timeline-mobile-details .timeline-detail-organization {
