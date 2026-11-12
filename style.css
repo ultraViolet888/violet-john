@@ -785,6 +785,8 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     line-height: 1.75;
 }
 
+.timeline-mobile-meta { display: none !important; }
+
 /* Phone timeline: a linear, newest-first reading layout using the original
    timeline entries, dates and detail cards (no duplicated event data). */
 @media (max-width: 760px) {
@@ -826,6 +828,7 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     .history-timeline .timeline-trigger strong { grid-column: 1; }
     .history-timeline .timeline-selection-dot { grid-column: 2; grid-row: 1 / span 2; }
     .timeline-mobile-meta {
+        display: block !important;
         grid-column: 1;
         grid-row: 2;
         color: var(--color-text-muted);
