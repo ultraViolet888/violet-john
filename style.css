@@ -309,6 +309,11 @@ a:focus-visible {
     font-weight: 650;
 }
 .tabs button:hover { color: var(--color-primary-strong); }
+/* Cyberpunk tabs use the theme's neon pink accent, not its teal primary. */
+html[data-theme="cyberpunk"] .tabs::before { background: var(--color-focus); }
+html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"],
+html[data-theme="cyberpunk"] .tabs button:hover { color: var(--color-focus); }
+
 .site-panel > .section-block:first-child {
     margin-top: 1.5rem;
     border-top: 0;
