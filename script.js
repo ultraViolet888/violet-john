@@ -250,8 +250,7 @@ document.querySelectorAll(".book-cover").forEach((cover) => {
     if (cover.complete && cover.naturalWidth === 0) cover.classList.add("book-cover-unavailable");
 });
 
-/* Desktop-only bookshelves reuse the existing book grid as the content source.
-   Mobile retains the original grid, links and cover fallbacks. */
+/* Bookshelves reuse the existing book grid as the source on every screen. */
 document.querySelectorAll(".book-grid").forEach(grid => {
     const cards = [...grid.querySelectorAll(".book-card")];
     if (!cards.length) return;
@@ -293,7 +292,15 @@ document.querySelectorAll(".book-grid").forEach(grid => {
             spine.className = "book-spine";
             spine.setAttribute("aria-label", "View " + title);
             spine.setAttribute("aria-pressed", "false");
-            spine.style.setProperty("--spine-height", (148 + ((offset + index) % 5) * 9) + "px");
+            // Fit real spine text rather than clipping long titles. Vertical text
+            // wraps into additional columns; each extra column widens the spine.
+            const spineHeight = 185 + ((offset + index) % 4) * 14;
+            const measure = document.createElement("canvas").getContext("2d");
+            measure.font = "650 13px system-ui";
+            const textLength = measure.measureText(title).width;
+            const columns = Math.max(1, Math.ceil(textLength / (spineHeight - 25)));
+            spine.style.setProperty("--spine-height", spineHeight + "px");
+            spine.style.setProperty("--spine-width", Math.min(104, Math.max(40, columns * 18 + 14)) + "px");
             const spineTitle = document.createElement("span");
             spineTitle.textContent = title;
             spine.append(spineTitle);
