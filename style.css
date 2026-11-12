@@ -841,6 +841,14 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
         box-shadow: var(--shadow-sm);
     }
     .bookshelf-detail[hidden] { display: none; }
+    .bookshelf-detail:not([hidden]) {
+        animation: bookshelf-reveal 220ms ease-out both;
+    }
+    @keyframes bookshelf-reveal {
+        from { opacity: 0; transform: translateY(-7px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     .bookshelf-cover {
         width: 100%;
         aspect-ratio: 2 / 3;
@@ -864,6 +872,7 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     }
     .bookshelf-hint { margin: 0 0 0.6rem; color: var(--color-text-muted); font-size: 0.85rem; }
 @media (prefers-reduced-motion: reduce) {
+    .bookshelf-detail:not([hidden]) { animation: none; }
     .book-spine { transition: none; }
     .book-spine:hover, .book-spine:focus-visible, .book-spine[aria-pressed="true"] { transform: none; }
 }
