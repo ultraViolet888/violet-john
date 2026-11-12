@@ -336,38 +336,11 @@ document.querySelectorAll(".book-grid").forEach(grid => {
             spine.addEventListener("pointerleave", hideSpinePreview);
             spine.addEventListener("focus", () => showSpinePreview(spine, cover));
             spine.addEventListener("blur", hideSpinePreview);
-            // Sample cover artwork locally, then blend it into the current theme.
-            // Missing/unreadable covers keep the existing theme-based spine tint.
-            if (cover) {
-                const applyCoverTint = () => {
-                    if (!cover.naturalWidth) return;
-                    try {
-                        const canvas = document.createElement("canvas");
-                        canvas.width = canvas.height = 16;
-                        const context = canvas.getContext("2d", { willReadFrequently: true });
-                        context.drawImage(cover, 0, 0, 16, 16);
-                        const data = context.getImageData(0, 0, 16, 16).data;
-                        let red = 0, green = 0, blue = 0, weightSum = 0;
-                        for (let i = 0; i < data.length; i += 4) {
-                            const [r, g, b, a] = data.slice(i, i + 4);
-                            const chroma = Math.max(r, g, b) - Math.min(r, g, b);
-                            const weight = (a / 255) * (0.25 + chroma / 255);
-                            red += r * weight;
-                            green += g * weight;
-                            blue += b * weight;
-                            weightSum += weight;
-                        }
-                        if (weightSum > 0) {
-                            const tint = [red, green, blue].map(v => Math.round(v / weightSum));
-                            spine.style.background = "color-mix(in srgb, rgb(" + tint.join(",") +
-                                ") 38%, var(--color-primary-soft))";
-                        }
-                    } catch (error) {
-                        // Theme fallback is intentional for unavailable or opaque artwork.
-                    }
-                };
-                if (cover.complete) applyCoverTint();
-                else cover.addEventListener("load", applyCoverTint, { once: true });
+            // Resolve stable book ID to a precomputed theme-aware CSS color token.
+            // Changing book order does not change the assigned spine color.
+            const bookId = source.getAttribute("aria-describedby")?.match(/book-tooltip-(\\d+)/)?.[1];
+            if (bookId) {
+                spine.style.setProperty("--book-spine-color", "var(--book-spine-" + bookId + ")");
             }
             spine.addEventListener("click", () => {
                 hideSpinePreview();
