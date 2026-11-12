@@ -25,7 +25,7 @@ class CoverImportTests(unittest.TestCase):
             def fake_fetch(url):
                 if url == bad:
                     raise ValueError("Cover unavailable")
-                return b"\\xff\\xd8\\xffimage bytes"
+                return b"\xff\xd8\xffimage bytes"
 
             count, failures = cache_covers(index, folder, fake_fetch)
             updated = index.read_text(encoding="utf-8")
