@@ -334,43 +334,143 @@
 
         <div id="personal-panel" class="site-panel" role="tabpanel" aria-labelledby="personal-tab" tabindex="0" hidden>
         <section class="section-block" id="interests">
-            <h2>Outside of work</h2>
-            <p>I'm usually making, growing, reading, riding, or learning something new.</p>
+            <h2>Rabbit Holes</h2>
+            <p>I tend to fall into things pretty deeply. I'll explore every variation I can find, learn more than I expected, and eventually move on to something else. But moving on doesn't mean leaving it behind. Some interests become habits, some become skills, and others become parts of myself I can return to years later.</p>
+            <p class="interest-instructions">Choose an interest to read its story. These are living drafts, not finished biographies; my own photos and more reflections will find their way here over time.</p>
             <div class="interest-grid" aria-label="Personal interests">
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">🏍️</span>
-                    <h3>Motorcycles</h3>
+                    <button class="interest-trigger" type="button" data-interest="motorcycles" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Motorcycles">
+                        <span class="interest-symbol" aria-hidden="true">🏍️</span>
+                        <span class="interest-title">Motorcycles</span>
+                        <span class="interest-status">Dormant, not gone</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">🌱</span>
-                    <h3>Native gardening</h3>
+                    <button class="interest-trigger" type="button" data-interest="gardening" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Native gardening">
+                        <span class="interest-symbol" aria-hidden="true">🌱</span>
+                        <span class="interest-title">Native gardening</span>
+                        <span class="interest-status">Growing into it</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">✒️</span>
-                    <h3>Fountain pens &amp; calligraphy</h3>
+                    <button class="interest-trigger" type="button" data-interest="calligraphy" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Fountain pens &amp; calligraphy">
+                        <span class="interest-symbol" aria-hidden="true">✒️</span>
+                        <span class="interest-title">Fountain pens &amp; calligraphy</span>
+                        <span class="interest-status">Practicing</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">🎮</span>
-                    <h3>Video games</h3>
+                    <button class="interest-trigger" type="button" data-interest="games" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Video games">
+                        <span class="interest-symbol" aria-hidden="true">🎮</span>
+                        <span class="interest-title">Video games</span>
+                        <span class="interest-status">A familiar world</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">💅</span>
-                    <h3>Nail painting</h3>
+                    <button class="interest-trigger" type="button" data-interest="nails" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Nail painting">
+                        <span class="interest-symbol" aria-hidden="true">💅</span>
+                        <span class="interest-title">Nail painting</span>
+                        <span class="interest-status">Personal expression</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">💄</span>
-                    <h3>Makeup</h3>
+                    <button class="interest-trigger" type="button" data-interest="makeup" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Makeup">
+                        <span class="interest-symbol" aria-hidden="true">💄</span>
+                        <span class="interest-title">Makeup</span>
+                        <span class="interest-status">Integrated</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">👗</span>
-                    <h3>Fashion</h3>
+                    <button class="interest-trigger" type="button" data-interest="fashion" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Fashion">
+                        <span class="interest-symbol" aria-hidden="true">👗</span>
+                        <span class="interest-title">Fashion</span>
+                        <span class="interest-status">Exploring</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
                 <article class="interest-card">
-                    <span class="interest-symbol" aria-hidden="true">🍲</span>
-                    <h3>Food</h3>
+                    <button class="interest-trigger" type="button" data-interest="food" aria-expanded="false" aria-controls="interest-story" aria-label="Explore Food">
+                        <span class="interest-symbol" aria-hidden="true">🍲</span>
+                        <span class="interest-title">Food</span>
+                        <span class="interest-status">Always room for more</span>
+                        <span class="interest-explore" aria-hidden="true">Explore ↗</span>
+                    </button>
                 </article>
             </div>
-            <p class="interest-note">A first pass at this section. The interests are real; the presentation is still a work in progress.</p>
+            <div class="interest-story" id="interest-story" role="region" aria-label="Selected interest story" hidden>
+                <div class="interest-story-top"><span>One rabbit hole, a little deeper</span><button class="interest-story-close" type="button">Close ×</button></div>
+                <div class="interest-story-body"></div>
+            </div>
+            <template id="interest-motorcycles">
+                <div class="interest-story-content">
+                    <h3>Motorcycles</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>I spent roughly twelve years riding motorcycles. In the first five to seven, I went through several bikes, and one eventually accumulated thousands of dollars in cosmetic modifications.</p></section>
+                    <section class="interest-story-part"><h4>What changed</h4><p>Over time, I rode less. After moving to New Jersey, I eventually sold my final bike.</p></section>
+                    <section class="interest-story-part"><h4>What stayed with me</h4><p>I don't need to own a motorcycle to feel connected to riding. Years of experience are still there, and a conversation with another rider can bring them right back.</p></section>
+                </div>
+            </template>
+            <template id="interest-gardening">
+                <div class="interest-story-content">
+                    <h3>Native gardening</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>Native plants and the ecosystems around them have become a place to put my curiosity into practice. I've been involved in green initiatives, including planting ten oak trees in Moorestown.</p></section>
+                    <section class="interest-story-part"><h4>What I'm exploring</h4><p>A pollinator garden is one way I want to make more room for wildlife and think about what belongs in a landscape.</p></section>
+                    <section class="interest-story-part"><h4>What stays with me</h4><p>The interesting part is not only the plants, but the relationships between them, other species, and the places we live.</p></section>
+                </div>
+            </template>
+            <template id="interest-calligraphy">
+                <div class="interest-story-content">
+                    <h3>Fountain pens &amp; calligraphy</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>I've been exploring fountain pens, inks, flex nibs, and cursive handwriting—discovering that something as familiar as writing can demand a surprising amount of physical attention.</p></section>
+                    <section class="interest-story-part"><h4>What I'm practicing</h4><p>Relaxing my grip, paying attention to where my hand rests, and learning how different nibs behave are all part of the work.</p></section>
+                    <section class="interest-story-part"><h4>What stays with me</h4><p>I'm drawn to the idea that a small, ordinary action can become more deliberate through practice.</p></section>
+                </div>
+            </template>
+            <template id="interest-games">
+                <div class="interest-story-content">
+                    <h3>Video games</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>Video games are one of the subjects I return to, alongside reading and other kinds of storytelling.</p></section>
+                    <section class="interest-story-part"><h4>What I'm still figuring out</h4><p>I want to write more about the games, mechanics, and experiences that have stuck with me.</p></section>
+                    <section class="interest-story-part"><h4>What stayed with me</h4><p>This part of the story is still being written.</p></section>
+                </div>
+            </template>
+            <template id="interest-nails">
+                <div class="interest-story-content">
+                    <h3>Nail painting</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>Nail painting is another way I've made room for experimentation and personal expression.</p></section>
+                    <section class="interest-story-part"><h4>What I'm still exploring</h4><p>I want to capture the techniques, colors, and looks I've enjoyed trying rather than turn this into a list of products.</p></section>
+                    <section class="interest-story-part"><h4>What stayed with me</h4><p>I'm still collecting the details of this story.</p></section>
+                </div>
+            </template>
+            <template id="interest-makeup">
+                <div class="interest-story-content">
+                    <h3>Makeup</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>I went through a period of trying lots of brands, product types, techniques, and styles—following the possibilities much further than I first expected.</p></section>
+                    <section class="interest-story-part"><h4>What became second nature</h4><p>Eventually, the experimentation settled into a particular winged-eyeliner style that I can do fairly well and quickly.</p></section>
+                    <section class="interest-story-part"><h4>What stayed with me</h4><p>The intensity faded, but what I learned didn't disappear. Something that once took a lot of exploration became a familiar part of how I express myself.</p></section>
+                </div>
+            </template>
+            <template id="interest-fashion">
+                <div class="interest-story-content">
+                    <h3>Fashion</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>Clothes and styling give me another place to explore shape, texture, proportion, and personal expression.</p></section>
+                    <section class="interest-story-part"><h4>What I'm exploring</h4><p>I like experimenting with combinations, including how a distinctive detail can fit into an everyday outfit.</p></section>
+                    <section class="interest-story-part"><h4>What stayed with me</h4><p>I want to add more specific stories and photographs as this part of the page grows.</p></section>
+                </div>
+            </template>
+            <template id="interest-food">
+                <div class="interest-story-content">
+                    <h3>Food</h3>
+                    <section class="interest-story-part"><h4>The rabbit hole</h4><p>Food belongs on this page because curiosity doesn't stop at work, books, or projects.</p></section>
+                    <section class="interest-story-part"><h4>What I'm exploring</h4><p>I haven't yet decided which food experiences or discoveries I'd most want to share here.</p></section>
+                    <section class="interest-story-part"><h4>What stayed with me</h4><p>A fuller story belongs here when I've found the right words.</p></section>
+                </div>
+            </template>
         </section>
 
 <section class="section-block" id="personal-reading">
