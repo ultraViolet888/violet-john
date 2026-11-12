@@ -1051,6 +1051,11 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     }
 }
 
+/* Center book groups when they fit; keep overflow accessible from the left. */
+@media (min-width: 761px) {
+    .bookshelf-row { justify-content: safe center; }
+}
+
 @media (max-width: 760px) {
     .bookshelf-row {
         min-height: 260px;
