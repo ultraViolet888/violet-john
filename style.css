@@ -754,19 +754,20 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     .book-card { transform: none !important; }
 }
 
-/* Desktop bookshelf: spine-first browsing, built from the existing book cards.
-   The underlying grid stays intact and is used on mobile. */
-.desktop-bookshelf { display: none; }
-@media (min-width: 761px) {
-    .desktop-bookshelf { display: block; margin-top: var(--space-6); }
-    .book-grid.shelf-enhanced { display: none; }
+/* Spine-first bookshelves use the existing book data on every screen. */
+.desktop-bookshelf { display: block; margin-top: var(--space-6); }
+.book-grid.shelf-enhanced { display: none; }
+
 
     .bookshelf-row {
         display: flex;
         align-items: flex-end;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 3px;
-        min-height: 194px;
+        min-height: 260px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
         padding: 12px 12px 0;
         border-bottom: 10px solid var(--color-primary-strong);
         border-radius: 0 0 5px 5px;
@@ -776,7 +777,7 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     .bookshelf-row + .bookshelf-row { margin-top: 1.25rem; }
     .book-spine {
         --book-tint: 35%;
-        flex: 0 1 39px;
+        flex: 0 0 var(--spine-width, 40px);
         min-width: 0;
         height: var(--spine-height, 165px);
         padding: 8px 5px;
@@ -801,9 +802,9 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
         font-size: clamp(0.68rem, 1vw, 0.84rem);
         font-weight: 650;
         line-height: 1.2;
-        overflow: hidden;
         max-height: 100%;
         overflow-wrap: anywhere;
+        word-break: normal;
     }
     .book-spine:hover, .book-spine:focus-visible, .book-spine[aria-pressed="true"] {
         transform: translateY(-10px);
@@ -849,7 +850,6 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
         cursor: pointer;
     }
     .bookshelf-hint { margin: 0 0 0.6rem; color: var(--color-text-muted); font-size: 0.85rem; }
-}
 @media (prefers-reduced-motion: reduce) {
     .book-spine { transition: none; }
     .book-spine:hover, .book-spine:focus-visible, .book-spine[aria-pressed="true"] { transform: none; }
@@ -1049,4 +1049,16 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     html[data-theme="cyberpunk"] .timeline-mobile-event[aria-pressed="true"] {
         filter: drop-shadow(0 0 6px var(--track-color));
     }
+}
+
+@media (max-width: 760px) {
+    .bookshelf-row {
+        min-height: 260px;
+        padding-inline: 6px;
+        scroll-snap-type: x proximity;
+    }
+    .book-spine { scroll-snap-align: start; }
+    .bookshelf-detail { grid-template-columns: 92px minmax(0, 1fr); gap: 0.8rem; padding: 0.75rem; }
+    .bookshelf-detail h3 { font-size: 1rem; }
+    .bookshelf-hint::after { content: " Swipe along the shelf to see more."; }
 }
