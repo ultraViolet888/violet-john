@@ -29,6 +29,10 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Leave blank until Umami Cloud is configured; see docs/analytics.md. -->
+    <meta name="umami-website-id" content="69f5e729-db71-42ea-af1f-0763abc2fc99">
+    <script defer src="analytics.js"></script>
 </head>
 
 <body>
@@ -41,7 +45,7 @@
             </p>
 
             <p class="tagline">
-                I work on products, software, teams and the occasionally messy space between them.
+                Looking for my next Product Manager role. I come with a backlog of ideas, not a backlog of buzzwords.
             </p>
 
             <p class="tagline">
@@ -49,13 +53,13 @@
             </p>
 
             <nav class="hero-links" aria-label="Contact links">
-                <a href="mailto:violetviola888@gmail.com" aria-label="Email" title="Email">
+                <a href="mailto:violetviola888@gmail.com" data-umami-event="contact-click" data-umami-event-destination="email" aria-label="Email" title="Email">
                     <svg class="hero-link-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
                 </a>
-                <a href="https://github.com/ultraviolet888" aria-label="GitHub profile" title="GitHub profile" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/ultraviolet888" data-umami-event="contact-click" data-umami-event-destination="github" aria-label="GitHub profile" title="GitHub profile" target="_blank" rel="noopener noreferrer">
                     <svg class="hero-link-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/violet-j/" aria-label="LinkedIn profile" title="LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/violet-j/" data-umami-event="contact-click" data-umami-event-destination="linkedin" aria-label="LinkedIn profile" title="LinkedIn profile" target="_blank" rel="noopener noreferrer">
                     <svg class="hero-link-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.211c.837 0 1.358-.554 1.358-1.248-.015-.71-.52-1.249-1.342-1.249-.82 0-1.358.54-1.358 1.249 0 .694.52 1.248 1.327 1.248h.015zm4.908 8.211V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.633v3.866h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.17H6.25c.03.678 0 7.225 0 7.225h2.401z"/></svg>
                 </a>
             </nav>
@@ -71,11 +75,12 @@
             </div>
         </header>
 
-        <section class="tabs">
-            <button>Professional</button>
-            <button>Personal</button>
-        </section>
+        <nav class="tabs" role="tablist" aria-label="Site sections">
+            <button id="professional-tab" type="button" role="tab" aria-selected="true" aria-controls="professional-panel" tabindex="0">Professional</button>
+            <button id="personal-tab" type="button" role="tab" aria-selected="false" aria-controls="personal-panel" tabindex="-1">Personal</button>
+        </nav>
 
+        <div id="professional-panel" class="site-panel" role="tabpanel" aria-labelledby="professional-tab" tabindex="0">
         <section class="section-block">
             <h2>Work</h2>
 
@@ -111,8 +116,8 @@
                 <span class="timeline-rail timeline-rail-growth" aria-hidden="true"></span>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:0.7500; --event-duration:3.4167;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-1" title="Worked full-time before university, developing coordination and people skills while learning the value of hard physical work."><strong>Mortuary Administrator</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-1" hidden><span class="timeline-detail-date">Oct 2010 – Mar 2014</span><span class="timeline-detail-organization">Hillside Memorial Park and Mortuary</span>Worked full-time before university, developing coordination and people skills while learning the value of hard physical work.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-1" title="TL;DR: I dug graves then spoke to the health department."><strong>Mortuary Administrator</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-1" hidden><span class="timeline-detail-date">Oct 2010 – Mar 2014</span><span class="timeline-detail-organization">Hillside Memorial Park and Mortuary</span>TL;DR: I dug graves then spoke to the health department.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-education timeline-interval" style="--event-position:1.4167; --event-duration:4.0000;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
@@ -136,13 +141,13 @@
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:7.4167; --event-duration:4.2500;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-5" title="Developed launch vehicle simulations and verification analyses; supported three missions and day-of-launch go/no-go operations."><strong>Guidance, Navigation &amp; Control Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-5" hidden><span class="timeline-detail-date">Jun 2017 – Sep 2021</span><span class="timeline-detail-organization">SAIC</span>Developed launch vehicle simulations and verification analyses; supported three missions and day-of-launch go/no-go operations.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-5" title="TL;DR: I double checked rockets."><strong>Guidance, Navigation &amp; Control Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-5" hidden><span class="timeline-detail-date">Jun 2017 – Sep 2021</span><span class="timeline-detail-organization">SAIC</span>TL;DR: I double checked rockets.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:11.6667; --event-duration:2.4166;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-6" title="Led a six-person radar verification team; completed requirements verification on time for approximately $2M against a $3M budget."><strong>Lead Verification &amp; Validation Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-6" hidden><span class="timeline-detail-date">Sep 2021 – Feb 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>Led a six-person radar verification team; completed requirements verification on time for approximately $2M against a $3M budget.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-6" title="TL;DR: I double checked the big radar."><strong>Lead Verification &amp; Validation Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-6" hidden><span class="timeline-detail-date">Sep 2021 – Feb 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I double checked the big radar.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:12.4167;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
@@ -151,18 +156,23 @@
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-interval" style="--event-position:13.5833; --event-duration:0.4167;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-8" title="Led five engineers in building an ISO 9001-aligned quality framework in four months for under $100K."><strong>Quality Management System Project Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-8" hidden><span class="timeline-detail-date">Aug 2023 – Jan 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>Led five engineers in building an ISO 9001-aligned quality framework in four months for under $100K.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-8" title="TL;DR: I built a quality system for the quality people."><strong>Quality Management System Project Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-8" hidden><span class="timeline-detail-date">Aug 2023 – Jan 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I built a quality system for the quality people.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:14.0833; --event-duration:1.3334;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-9" title="Supported ten simulation and digital twin software teams, coordinating delivery and coaching teams; also coached through the Corporate Coaching Network alongside my primary role."><strong>Agile Program Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-9" hidden><span class="timeline-detail-date">Feb 2024 – Jun 2025</span><span class="timeline-detail-organization">Lockheed Martin</span>Supported ten simulation and digital twin software teams, coordinating delivery and coaching teams; also coached through the Corporate Coaching Network alongside my primary role.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-9" title="TL;DR: I helped 10 software teams figure out what they were actually trying to do."><strong>Agile Program Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-9" hidden><span class="timeline-detail-date">Feb 2024 – Jun 2025</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I helped 10 software teams figure out what they were actually trying to do.</p>
                 </div>
                                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:14.3333;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
                     <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-15" title="Earned the SAFe 6 Agilist certification in May 2024."><strong>SAFe 6 Agilist</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
                     <p class="timeline-detail" id="timeline-detail-15" hidden><span class="timeline-detail-date">May 2024</span>Earned the SAFe 6 Agilist certification.</p>
+                </div>
+                                <div class="timeline-node timeline-event timeline-event-growth timeline-interval timeline-event-coach" style="--event-position:14.4167; --event-duration:2.4167;">
+                    <span class="timeline-duration-bar" aria-hidden="true"></span>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-16" title="Coached teams, Scrum Masters, and Product Owners through the Corporate Coaching Network alongside my primary role."><strong>Agile Coach</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                    <p class="timeline-detail" id="timeline-detail-16" hidden><span class="timeline-detail-date">Jun 2024 – Present</span><span class="timeline-detail-organization">Lockheed Martin · Corporate Coaching Network</span>Supported teams, Scrum Masters, and Product Owners with facilitation, delivery, and product practices alongside my primary role.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:14.6667;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
@@ -171,13 +181,13 @@
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:15.4167; --event-duration:0.6666;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-11" title="Led approximately 20 engineers across two radar software teams and planned a strangler-fig modernization toward modular, containerized components."><strong>Lead Software Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-11" hidden><span class="timeline-detail-date">Jun 2025 – Feb 2026</span><span class="timeline-detail-organization">Lockheed Martin</span>Led approximately 20 engineers across two radar software teams and planned a strangler-fig modernization toward modular, containerized components.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-11" title="TL;DR: I helped modernize the big radar software without breaking the big radar."><strong>Lead Software Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-11" hidden><span class="timeline-detail-date">Jun 2025 – Feb 2026</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I helped modernize the big radar software without breaking the big radar.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval current-node" style="--event-position:16.0833; --event-duration:0.7500;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-12" title="Owned five internal digital products, reduced more than 40 bugs to zero in one sprint, and helped automate smoke tests, enabling a fourfold increase in release frequency."><strong>Product Owner</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-12" hidden><span class="timeline-detail-date">Feb 2026 – Present</span><span class="timeline-detail-organization">Lockheed Martin · Internal Digital Products</span>Owned five internal digital products, reduced more than 40 bugs to zero in one sprint, and helped automate smoke tests, enabling a fourfold increase in release frequency.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-12" title="TL;DR: I ask people what hurts, then help turn that into software."><strong>Product Owner</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-12" hidden><span class="timeline-detail-date">Feb 2026 – Present</span><span class="timeline-detail-organization">Lockheed Martin · Internal Digital Products</span>TL;DR: I ask people what hurts, then help turn that into software.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:16.4167;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
@@ -216,123 +226,356 @@
             </ul>
         </section>
 
-        <section class="section-block" id="reading">
+                <section class="section-block" id="professional-reading">
             <h2>Things I've been reading</h2>
-            <p>I read quite a bit about organizations, manufacturing, software, leadership, and why groups of otherwise sensible people occasionally make work astonishingly difficult.</p>
-            <div class="book-grid" aria-label="Books on my reading shelf">
-                <article class="book-card">
-                    <a class="book-card-link" href="https://www.simonandschuster.com/books/The-Phoenix-Project/Gene-Kim/The-Phoenix-Project/9781950508945" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-1" aria-label="The Phoenix Project — Gene Kim, Kevin Behr &amp; George Spafford. Open book details in a new tab.">
+            <p>Some books on software, leadership, manufacturing, and making work better.</p>
+            <div class="book-grid" aria-label="Professional reading shelf">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Phoenix Project" href="https://www.simonandschuster.com/books/The-Phoenix-Project/Gene-Kim/The-Phoenix-Project/9781950508945" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-1" aria-label="The Phoenix Project — Gene Kim, Kevin Behr &amp; George Spafford. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/thePhoenixProject.jpg" alt="Cover of The Phoenix Project" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-1" role="tooltip">A story of bottlenecks, collaboration, and changing how technology work flows.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://www.simonandschuster.com/books/The-DevOps-Handbook-2nd-Edition/Gene-Kim/9781950508402" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-2" aria-label="The DevOps Handbook — Gene Kim and collaborators. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The DevOps Handbook" href="https://www.simonandschuster.com/books/The-DevOps-Handbook-2nd-Edition/Gene-Kim/9781950508402" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-2" aria-label="The DevOps Handbook — Gene Kim and collaborators. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/devOpsHandbook.jpg" alt="Cover of The DevOps Handbook" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-2" role="tooltip">Practical ways to improve delivery, feedback, reliability, and learning.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://www.simonandschuster.com/books/The-Unicorn-Project/Gene-Kim/The-Phoenix-Project/9781942788768" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-3" aria-label="The Unicorn Project — Gene Kim. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Unicorn Project" href="https://www.simonandschuster.com/books/The-Unicorn-Project/Gene-Kim/The-Phoenix-Project/9781942788768" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-3" aria-label="The Unicorn Project — Gene Kim. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/unicornProject.jpg" alt="Cover of The Unicorn Project" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-3" role="tooltip">A companion story about developers navigating bureaucracy and finding ways to deliver.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://openlibrary.org/isbn/9781119477242" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-4" aria-label="The Fearless Organization — Amy C. Edmondson. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Fearless Organization" href="https://openlibrary.org/isbn/9781119477242" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-4" aria-label="The Fearless Organization — Amy C. Edmondson. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/theFearlessOrganization.jpg" alt="Cover of The Fearless Organization" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-4" role="tooltip">Why psychological safety matters for speaking up, learning, and improving together.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://www.penguinrandomhouse.com/books/314163/turn-the-ship-around-by-l-david-marquet/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-5" aria-label="Turn the Ship Around! — L. David Marquet. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Turn the Ship Around!" href="https://www.penguinrandomhouse.com/books/314163/turn-the-ship-around-by-l-david-marquet/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-5" aria-label="Turn the Ship Around! — L. David Marquet. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/turnTheShipAround.jpg" alt="Cover of Turn the Ship Around!" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-5" role="tooltip">A firsthand case for developing leaders and distributing decision-making.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://openlibrary.org/isbn/9781455586660" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-6" aria-label="Deep Work — Cal Newport. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Deep Work" href="https://openlibrary.org/isbn/9781455586660" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-6" aria-label="Deep Work — Cal Newport. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/deepWork.jpg" alt="Cover of Deep Work" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-6" role="tooltip">An exploration of sustained concentration in a distracted working world.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://teamtopologies.squarespace.com/book" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-7" aria-label="Team Topologies — Matthew Skelton &amp; Manuel Pais. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Team Topologies" href="https://teamtopologies.squarespace.com/book" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-7" aria-label="Team Topologies — Matthew Skelton &amp; Manuel Pais. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/teamTopologies.jpg" alt="Cover of Team Topologies" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-7" role="tooltip">How team boundaries and interaction patterns shape software delivery.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://itrevolution.com/product/wiring-the-winning-organization/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-8" aria-label="Wiring the Winning Organization — Gene Kim &amp; Steven J. Spear. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Wiring the Winning Organization" href="https://itrevolution.com/product/wiring-the-winning-organization/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-8" aria-label="Wiring the Winning Organization — Gene Kim &amp; Steven J. Spear. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/wiringWinningOrganization.jpg" alt="Cover of Wiring the Winning Organization" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-8" role="tooltip">A look at designing conditions that help organizations solve problems and learn.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://www.mheducation.com/highered/mhp/product/toyota-way-second-edition-14-management-principles-world-s-greatest-manufacturer.html" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-9" aria-label="The Toyota Way — Jeffrey K. Liker. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Toyota Way" href="https://www.mheducation.com/highered/mhp/product/toyota-way-second-edition-14-management-principles-world-s-greatest-manufacturer.html" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-9" aria-label="The Toyota Way — Jeffrey K. Liker. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/theToyotaWay.jpg" alt="Cover of The Toyota Way" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-9" role="tooltip">The philosophy and practices behind Toyota's approach to continuous improvement.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://www.simonandschuster.net/books/Industrial-DevOps/Dr-Suzette-Johnson/9781950508792" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-10" aria-label="Industrial DevOps — Suzette Johnson &amp; Robin Yeman. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Industrial DevOps" href="https://www.simonandschuster.net/books/Industrial-DevOps/Dr-Suzette-Johnson/9781950508792" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-10" aria-label="Industrial DevOps — Suzette Johnson &amp; Robin Yeman. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/industrialDevOps.jpg" alt="Cover of Industrial DevOps" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-10" role="tooltip">Applying Lean, Agile, and DevOps principles to complex cyber-physical systems.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://openlibrary.org/isbn/9780884271956" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-11" aria-label="The Goal — Eliyahu M. Goldratt &amp; Jeff Cox. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Goal" href="https://openlibrary.org/isbn/9780884271956" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-11" aria-label="The Goal — Eliyahu M. Goldratt &amp; Jeff Cox. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/theGoal.jpg" alt="Cover of The Goal" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-11" role="tooltip">A manufacturing novel about constraints, flow, and systems thinking.</span>
                     </a>
                 </article>
-                <article class="book-card">
-                    <a class="book-card-link" href="https://itrevolution.com/product/practice-makes-culture/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-12" aria-label="Practice Makes Culture — Christine Hudson and Ronica Roth. Open book details in a new tab.">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Practice Makes Culture" href="https://itrevolution.com/product/practice-makes-culture/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-12" aria-label="Practice Makes Culture — Christine Hudson and Ronica Roth. Open book details in a new tab.">
                         <img class="book-cover" src="assets/books/practiceMakesCulture.jpg" alt="Cover of Practice Makes Culture" loading="lazy" decoding="async" width="180" height="270">
                         <span class="book-cover-fallback" aria-hidden="true">Cover unavailable</span>
                         <span class="book-tooltip" id="book-tooltip-12" role="tooltip">A practical exploration of how daily habits, ownership, and difficult conversations shape organizational culture.</span>
                     </a>
                 </article>
             </div>
-            
         </section>
 
-        <section class="section-block">
-            <h2>How This Site Is Built</h2>
-
-            <p>
-                A lightweight, dependency-free portfolio built in the open, one small pull request at a time. No front-end framework or build system yet.
-            </p>
-
-            <h3>Built with</h3>
-            <ul>
-                <li>Semantic HTML5 for structure, links, and accessible controls</li>
-                <li>CSS3 with Grid, responsive layouts, custom properties, and multiple color themes</li>
-                <li>Vanilla JavaScript for interactive timeline details, theme selection, and image fallbacks</li>
-                <li>Locally hosted JPEG book covers and an SVG favicon</li>
-                <li>Git and GitHub pull requests for version control and incremental changes</li>
-                <li>GitHub Pages for static-site hosting and publishing</li>
-                <li>GitHub API for displaying the repository’s latest update date</li>
-            </ul>
-
-            <h3>On the roadmap</h3>
-            <ul>
-                <li>Automated testing, accessibility checks, and a more deliberate CI/CD pipeline</li>
-                <li>Visitor metrics and product analytics</li>
-                <li>Additional interactive features and, eventually, serverless APIs</li>
-            </ul>
+        <section class="section-block" id="built-with">
+            <h2>Built with</h2>
+            <p class="tech-list">HTML5 · CSS3 · JavaScript · SVG · Git · GitHub Pages · Umami</p>
         </section>
+
+        </div>
+
+        <div id="personal-panel" class="site-panel" role="tabpanel" aria-labelledby="personal-tab" tabindex="0" hidden>
+        <section class="section-block" id="interests">
+            <h2>Outside of work</h2>
+            <p>I'm usually making, growing, reading, riding, or learning something new.</p>
+            <div class="interest-grid" aria-label="Personal interests">
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🏍️</span>
+                    <h3>Motorcycles</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🌱</span>
+                    <h3>Native gardening</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">✒️</span>
+                    <h3>Fountain pens &amp; calligraphy</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🎮</span>
+                    <h3>Video games</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">💅</span>
+                    <h3>Nail painting</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">💄</span>
+                    <h3>Makeup</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">👗</span>
+                    <h3>Fashion</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🍲</span>
+                    <h3>Food</h3>
+                </article>
+            </div>
+            <p class="interest-note">A first pass at this section. The interests are real; the presentation is still a work in progress.</p>
+        </section>
+
+<section class="section-block" id="personal-reading">
+            <h2>Things I've been reading</h2>
+            <p>Nature, stories, mysteries, memoirs, and wherever else curiosity takes me.</p>
+            <div class="book-grid" aria-label="Personal reading shelf">
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Nature&#39;s Best Hope" href="https://openlibrary.org/isbn/9781604699005" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-13" aria-label="Nature&#39;s Best Hope — Douglas W. Tallamy. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781604699005-L.jpg?default=false" alt="Cover of Nature&#39;s Best Hope" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Nature&#39;s Best Hope<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-13" role="tooltip">Native plants, backyard biodiversity, and making room for wildlife.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Crying in H Mart" href="https://openlibrary.org/isbn/9780525657743" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-14" aria-label="Crying in H Mart — Michelle Zauner. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780525657743-L.jpg?default=false" alt="Cover of Crying in H Mart" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Crying in H Mart<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-14" role="tooltip">A memoir about family, grief, food, and identity.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Tomorrow, and Tomorrow, and Tomorrow" href="https://openlibrary.org/isbn/9780593321201" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-15" aria-label="Tomorrow, and Tomorrow, and Tomorrow — Gabrielle Zevin. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780593321201-L.jpg?default=false" alt="Cover of Tomorrow, and Tomorrow, and Tomorrow" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Tomorrow, and Tomorrow, and Tomorrow<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-15" role="tooltip">Friendship, creativity, collaboration, and video games.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Anxious People" href="https://openlibrary.org/isbn/9781501160837" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-16" aria-label="Anxious People — Fredrik Backman. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781501160837-L.jpg?default=false" alt="Cover of Anxious People" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Anxious People<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-16" role="tooltip">An unlikely group of strangers caught in a very human predicament.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Braiding Sweetgrass" href="https://openlibrary.org/isbn/9781571313560" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-17" aria-label="Braiding Sweetgrass — Robin Wall Kimmerer. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781571313560-L.jpg?default=false" alt="Cover of Braiding Sweetgrass" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Braiding Sweetgrass<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-17" role="tooltip">Indigenous knowledge, ecology, reciprocity, and plants.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Gathering Moss" href="https://openlibrary.org/isbn/9780870714993" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-18" aria-label="Gathering Moss — Robin Wall Kimmerer. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780870714993-L.jpg?default=false" alt="Cover of Gathering Moss" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Gathering Moss<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-18" role="tooltip">A close-up exploration of mosses and the relationships they sustain.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Children of Time" href="https://openlibrary.org/isbn/9781447273301" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-19" aria-label="Children of Time — Adrian Tchaikovsky. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781447273301-L.jpg?default=false" alt="Cover of Children of Time" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Children of Time<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-19" role="tooltip">Evolution, intelligence, and humanity&#39;s place among other species.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Children of Ruin" href="https://openlibrary.org/isbn/9781509865857" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-20" aria-label="Children of Ruin — Adrian Tchaikovsky. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781509865857-L.jpg?default=false" alt="Cover of Children of Ruin" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Children of Ruin<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-20" role="tooltip">Alien biology, first contact, and strange forms of intelligence.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Children of Memory" href="https://openlibrary.org/isbn/9781529087192" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-21" aria-label="Children of Memory — Adrian Tchaikovsky. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781529087192-L.jpg?default=false" alt="Cover of Children of Memory" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Children of Memory<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-21" role="tooltip">Memory, identity, and the limits of what a civilization knows.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Children of Strife" href="https://openlibrary.org/isbn/9781035057788" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-22" aria-label="Children of Strife — Adrian Tchaikovsky. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781035057788-L.jpg?default=false" alt="Cover of Children of Strife" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Children of Strife<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-22" role="tooltip">Another journey into the evolving Children of Time universe.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Rules of Civility" href="https://openlibrary.org/isbn/9780143121169" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-23" aria-label="Rules of Civility — Amor Towles. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780143121169-L.jpg?default=false" alt="Cover of Rules of Civility" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Rules of Civility<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-23" role="tooltip">Friendship, ambition, and social life in 1930s New York.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Maybe You Should Talk to Someone" href="https://openlibrary.org/isbn/9781328662057" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-24" aria-label="Maybe You Should Talk to Someone — Lori Gottlieb. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781328662057-L.jpg?default=false" alt="Cover of Maybe You Should Talk to Someone" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Maybe You Should Talk to Someone<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-24" role="tooltip">A therapist explores the human experience from both sides of the couch.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Keeper of Enchanted Rooms" href="https://openlibrary.org/isbn/9781662500343" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-25" aria-label="Keeper of Enchanted Rooms — Charlie N. Holmberg. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781662500343-L.jpg?default=false" alt="Cover of Keeper of Enchanted Rooms" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Keeper of Enchanted Rooms<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-25" role="tooltip">A magical house, an unlikely partnership, and whimsical fantasy.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Happiness Falls" href="https://openlibrary.org/isbn/9780593448205" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-26" aria-label="Happiness Falls — Angie Kim. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780593448205-L.jpg?default=false" alt="Cover of Happiness Falls" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Happiness Falls<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-26" role="tooltip">A family mystery about language, communication, and assumptions.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Hunt, Gather, Parent" href="https://openlibrary.org/isbn/9781982149673" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-27" aria-label="Hunt, Gather, Parent — Michaeleen Doucleff. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781982149673-L.jpg?default=false" alt="Cover of Hunt, Gather, Parent" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Hunt, Gather, Parent<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-27" role="tooltip">Parenting approaches and lessons from families around the world.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="A Psalm for the Wild-Built" href="https://openlibrary.org/isbn/9781250236210" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-28" aria-label="A Psalm for the Wild-Built — Becky Chambers. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781250236210-L.jpg?default=false" alt="Cover of A Psalm for the Wild-Built" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">A Psalm for the Wild-Built<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-28" role="tooltip">A gentle science-fiction story about purpose, rest, and curiosity.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="A Prayer for the Crown-Shy" href="https://openlibrary.org/isbn/9781250236241" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-29" aria-label="A Prayer for the Crown-Shy — Becky Chambers. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781250236241-L.jpg?default=false" alt="Cover of A Prayer for the Crown-Shy" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">A Prayer for the Crown-Shy<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-29" role="tooltip">The continuing journey of a tea monk and a curious robot.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Scattered Minds" href="https://openlibrary.org/isbn/9780593714379" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-30" aria-label="Scattered Minds — Gabor Maté. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780593714379-L.jpg?default=false" alt="Cover of Scattered Minds" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Scattered Minds<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-30" role="tooltip">Attention, development, relationships, and neurodivergence.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Sound of a Wild Snail Eating" href="https://openlibrary.org/isbn/9781616206420" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-31" aria-label="The Sound of a Wild Snail Eating — Elisabeth Tova Bailey. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781616206420-L.jpg?default=false" alt="Cover of The Sound of a Wild Snail Eating" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Sound of a Wild Snail Eating<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-31" role="tooltip">Close observation of a woodland snail and the natural world.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Galaxy, and the Ground Within" href="https://openlibrary.org/isbn/9780062936042" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-32" aria-label="The Galaxy, and the Ground Within — Becky Chambers. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780062936042-L.jpg?default=false" alt="Cover of The Galaxy, and the Ground Within" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Galaxy, and the Ground Within<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-32" role="tooltip">Travelers from different species finding common ground.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Priory of the Orange Tree" href="https://openlibrary.org/isbn/9781635570304" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-33" aria-label="The Priory of the Orange Tree — Samantha Shannon. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781635570304-L.jpg?default=false" alt="Cover of The Priory of the Orange Tree" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Priory of the Orange Tree<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-33" role="tooltip">Dragons, politics, and an expansive fantasy world.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="A Day of Fallen Night" href="https://openlibrary.org/isbn/9781635577921" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-34" aria-label="A Day of Fallen Night — Samantha Shannon. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781635577921-L.jpg?default=false" alt="Cover of A Day of Fallen Night" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">A Day of Fallen Night<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-34" role="tooltip">An earlier era in the Roots of Chaos fantasy world.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Among the Burning Flowers" href="https://openlibrary.org/isbn/9798260201190" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-35" aria-label="Among the Burning Flowers — Samantha Shannon. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9798260201190-L.jpg?default=false" alt="Cover of Among the Burning Flowers" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Among the Burning Flowers<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-35" role="tooltip">A shorter return to the Roots of Chaos world.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Bullet That Missed" href="https://openlibrary.org/isbn/9780593299418" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-36" aria-label="The Bullet That Missed — Richard Osman. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780593299418-L.jpg?default=false" alt="Cover of The Bullet That Missed" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Bullet That Missed<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-36" role="tooltip">An entertaining mystery featuring the Thursday Murder Club.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Man Who Died Twice" href="https://openlibrary.org/isbn/9781984881014" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-37" aria-label="The Man Who Died Twice — Richard Osman. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781984881014-L.jpg?default=false" alt="Cover of The Man Who Died Twice" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Man Who Died Twice<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-37" role="tooltip">The Thursday Murder Club takes on a new mystery.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="Ready Player One" href="https://openlibrary.org/isbn/9780307887443" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-38" aria-label="Ready Player One — Ernest Cline. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780307887443-L.jpg?default=false" alt="Cover of Ready Player One" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">Ready Player One<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-38" role="tooltip">Virtual worlds, games, puzzles, and nostalgia.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Thursday Murder Club" href="https://openlibrary.org/isbn/9781984880987" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-39" aria-label="The Thursday Murder Club — Richard Osman. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781984880987-L.jpg?default=false" alt="Cover of The Thursday Murder Club" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Thursday Murder Club<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-39" role="tooltip">An amateur detective club solves an unexpectedly serious case.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="How to Work in Denmark" href="https://www.howtoworkindenmark.com/danish-working-culture-book/" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-40" aria-label="How to Work in Denmark — Kay Xander Mellish. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9788743048688-L.jpg?default=false" alt="Cover of How to Work in Denmark" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">How to Work in Denmark<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-40" role="tooltip">The unwritten rules of Danish workplaces and their culture.</span>
+                    </a>
+                </article>
+<article class="book-card">
+                    <a class="book-card-link" data-umami-event="book-click" data-umami-event-book="The Witch&#39;s Path" href="https://openlibrary.org/isbn/9780738763774" target="_blank" rel="noopener noreferrer" aria-describedby="book-tooltip-41" aria-label="The Witch&#39;s Path — Thorn Mooney. Open book details in a new tab.">
+                        <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780738763774-L.jpg?default=false" alt="Cover of The Witch&#39;s Path" loading="lazy" decoding="async" width="180" height="270">
+                        <span class="book-cover-fallback" aria-hidden="true">The Witch&#39;s Path<span class="book-cover-fallback-note">Cover unavailable</span></span>
+                        <span class="book-tooltip" id="book-tooltip-41" role="tooltip">A practical guide to growing and renewing a personal witchcraft practice.</span>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+                </div>
 
         <footer class="site-footer">
             <p>
