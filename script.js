@@ -250,6 +250,115 @@ document.querySelectorAll(".book-cover").forEach((cover) => {
     if (cover.complete && cover.naturalWidth === 0) cover.classList.add("book-cover-unavailable");
 });
 
+/* Desktop-only bookshelves reuse the existing book grid as the content source.
+   Mobile retains the original grid, links and cover fallbacks. */
+document.querySelectorAll(".book-grid").forEach(grid => {
+    const cards = [...grid.querySelectorAll(".book-card")];
+    if (!cards.length) return;
+    const shelf = document.createElement("div");
+    shelf.className = "desktop-bookshelf";
+    shelf.setAttribute("aria-label", grid.getAttribute("aria-label") || "Bookshelf");
+
+    const hint = document.createElement("p");
+    hint.className = "bookshelf-hint";
+    hint.textContent = "Select a book spine to see its cover and notes.";
+    shelf.append(hint);
+
+    const preview = document.createElement("div");
+    preview.className = "bookshelf-detail";
+    preview.hidden = true;
+    let selectedSpine = null;
+    function closePreview() {
+        if (selectedSpine) selectedSpine.setAttribute("aria-pressed", "false");
+        selectedSpine = null;
+        preview.hidden = true;
+    }
+
+    // Keep rows comfortably inside the desktop content column.
+    for (let offset = 0; offset < cards.length; offset += 16) {
+        const row = document.createElement("div");
+        row.className = "bookshelf-row";
+        for (const [index, card] of cards.slice(offset, offset + 16).entries()) {
+            const source = card.querySelector(".book-card-link");
+            if (!source) continue;
+            const title = source.dataset.umamiEventBook ||
+                source.querySelector(".book-cover")?.alt.replace(/^Cover of /, "") || "Book";
+            const sourceLabel = source.getAttribute("aria-label") || "";
+            const author = sourceLabel.includes(" — ") ?
+                sourceLabel.split(" — ")[1].split(". Open book details")[0] : "";
+            const notes = source.querySelector(".book-tooltip")?.textContent.trim() || "";
+            const cover = source.querySelector(".book-cover");
+            const spine = document.createElement("button");
+            spine.type = "button";
+            spine.className = "book-spine";
+            spine.setAttribute("aria-label", "View " + title);
+            spine.setAttribute("aria-pressed", "false");
+            spine.style.setProperty("--spine-height", (148 + ((offset + index) % 5) * 9) + "px");
+            const spineTitle = document.createElement("span");
+            spineTitle.textContent = title;
+            spine.append(spineTitle);
+            spine.addEventListener("click", () => {
+                if (selectedSpine === spine) {
+                    closePreview();
+                    return;
+                }
+                if (selectedSpine) selectedSpine.setAttribute("aria-pressed", "false");
+                selectedSpine = spine;
+                spine.setAttribute("aria-pressed", "true");
+                preview.replaceChildren();
+                const image = document.createElement("img");
+                image.className = "bookshelf-cover";
+                image.alt = cover?.alt || "Cover of " + title;
+                image.loading = "lazy";
+                if (cover?.getAttribute("src")) image.src = cover.getAttribute("src");
+                else image.hidden = true;
+                image.addEventListener("error", () => { image.hidden = true; });
+                const body = document.createElement("div");
+                const headingRow = document.createElement("div");
+                headingRow.className = "bookshelf-detail-head";
+                const heading = document.createElement("h3");
+                heading.textContent = title;
+                const dismiss = document.createElement("button");
+                dismiss.type = "button";
+                dismiss.className = "bookshelf-dismiss";
+                dismiss.textContent = "Close";
+                dismiss.addEventListener("click", () => {
+                    closePreview();
+                    spine.focus();
+                });
+                headingRow.append(heading, dismiss);
+                body.append(headingRow);
+                if (author) {
+                    const byline = document.createElement("p");
+                    byline.className = "bookshelf-author";
+                    byline.textContent = author;
+                    body.append(byline);
+                }
+                if (notes) {
+                    const description = document.createElement("p");
+                    description.textContent = notes;
+                    body.append(description);
+                }
+                const link = document.createElement("a");
+                link.href = source.href;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = "View book details";
+                link.dataset.umamiEvent = "book-click";
+                link.dataset.umamiEventBook = title;
+                body.append(link);
+                preview.append(image, body);
+                row.after(preview);
+                preview.hidden = false;
+            });
+            row.append(spine);
+        }
+        shelf.append(row);
+    }
+    grid.before(shelf);
+    grid.classList.add("shelf-enhanced");
+});
+
 /* Two accessible views; all professional and personal content stays in one page. */
 const tabs = Array.from(document.querySelectorAll('.tabs [role="tab"]'));
 function selectSiteTab(tab, focusTab = false, trackChange = false) {
