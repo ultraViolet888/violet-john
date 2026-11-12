@@ -109,3 +109,45 @@ document.querySelectorAll(".book-cover").forEach((cover) => {
     cover.addEventListener("error", () => { cover.classList.add("book-cover-unavailable"); });
     if (cover.complete && cover.naturalWidth === 0) cover.classList.add("book-cover-unavailable");
 });
+
+/* Two accessible views; all professional and personal content stays in one page. */
+const tabs = Array.from(document.querySelectorAll('.tabs [role="tab"]'));
+function selectSiteTab(tab, focusTab = false) {
+    if (!tabs.includes(tab)) return;
+    for (const item of tabs) {
+        const selected = item === tab;
+        item.setAttribute("aria-selected", String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(item.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !selected;
+    }
+    if (focusTab) tab.focus();
+    if (window.umami?.track) {
+        window.umami.track("site-section", { section: tab.id === "personal-tab" ? "personal" : "professional" });
+    }
+}
+
+if (tabs.length === 2) {
+    const initialTab = location.hash === "#personal" ? tabs[1] : tabs[0];
+    selectSiteTab(initialTab);
+
+    tabs.forEach(tab => tab.addEventListener("click", () => {
+        selectSiteTab(tab);
+        const hash = tab.id === "personal-tab" ? "#personal" : "#professional";
+        if (location.hash !== hash) history.replaceState(null, "", hash);
+    }));
+
+    document.querySelector(".tabs").addEventListener("keydown", event => {
+        if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        const selected = tabs.findIndex(tab => tab.getAttribute("aria-selected") === "true");
+        const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 :
+            (selected + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+        selectSiteTab(tabs[next], true);
+        history.replaceState(null, "", next === 1 ? "#personal" : "#professional");
+    });
+
+    window.addEventListener("hashchange", () => {
+        selectSiteTab(location.hash === "#personal" ? tabs[1] : tabs[0]);
+    });
+}
