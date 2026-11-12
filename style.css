@@ -784,3 +784,65 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     font-weight: 600;
     line-height: 1.75;
 }
+
+/* Phone timeline: a linear, newest-first reading layout using the original
+   timeline entries, dates and detail cards (no duplicated event data). */
+@media (max-width: 760px) {
+    .timeline-scroll {
+        overflow-x: visible;
+        overscroll-behavior-inline: auto;
+    }
+    .timeline-headings, .timeline-years, .timeline-rail,
+    .timeline-duration-bar, .timeline-milestone-dot {
+        display: none;
+    }
+    .history-timeline {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+        min-width: 0;
+        height: auto !important;
+        margin-top: 1.2rem;
+    }
+    .history-timeline .timeline-event {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 0.85rem 1rem;
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--timeline-track-color);
+        border-radius: var(--radius-md);
+        background: var(--color-surface-raised);
+    }
+    .history-timeline .timeline-trigger {
+        margin: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 0.2rem 0.75rem;
+    }
+    .history-timeline .timeline-trigger strong { grid-column: 1; }
+    .history-timeline .timeline-selection-dot { grid-column: 2; grid-row: 1 / span 2; }
+    .timeline-mobile-meta {
+        grid-column: 1;
+        grid-row: 2;
+        color: var(--color-text-muted);
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+    .history-timeline .timeline-detail {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+        box-shadow: none;
+        overflow-wrap: anywhere;
+    }
+    .history-timeline .timeline-event:has(.timeline-trigger[aria-expanded="true"]) {
+        z-index: 2;
+    }
+}
