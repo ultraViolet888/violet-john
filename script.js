@@ -77,9 +77,34 @@ fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
     });
 
 
-/* Expand details without disturbing the shared chronological grid rows. */
+/* The timeline is absolute-positioned to keep dates aligned. Measure only visible
+   content and expand its height when a selected detail card needs more space. */
 const historyTimeline = document.querySelector(".history-timeline");
 if (historyTimeline) {
+    function fitTimelineHeight() {
+        // Reset first so closing a card actually shrinks the timeline again.
+        historyTimeline.style.height = "";
+        if (historyTimeline.getClientRects().length === 0) return;
+
+        const yearHeight = parseFloat(
+            getComputedStyle(historyTimeline).getPropertyValue("--timeline-year-height")
+        ) || 80;
+        let needed = 17 * yearHeight;
+        const timelineTop = historyTimeline.getBoundingClientRect().top;
+
+        historyTimeline.querySelectorAll(
+            ".timeline-trigger, .timeline-duration-bar, .timeline-milestone-dot, .timeline-detail:not([hidden])"
+        ).forEach((item) => {
+            if (item.getClientRects().length === 0) return;
+            needed = Math.max(needed, item.getBoundingClientRect().bottom - timelineTop + 12);
+        });
+        historyTimeline.style.height = Math.ceil(needed) + "px";
+    }
+
+    fitTimelineHeight();
+    window.addEventListener("resize", fitTimelineHeight);
+
+    historyTimeline.addEventListener("click", (event) => {
     historyTimeline.addEventListener("click", (event) => {
         const entry = event.target.closest(".timeline-event");
         if (!entry || !historyTimeline.contains(entry)) return;
@@ -96,6 +121,7 @@ if (historyTimeline) {
         });
         trigger.setAttribute("aria-expanded", String(expand));
         details.hidden = !expand;
+        fitTimelineHeight();
         if (expand && window.umami?.track) {
             window.umami.track("timeline-expand", {
                 item: trigger.querySelector("strong")?.textContent?.trim() || "Unknown"
