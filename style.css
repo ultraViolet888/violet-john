@@ -823,7 +823,7 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     .timeline-mobile-map {
         --mobile-year: 44px;
         position: relative;
-        height: calc(17 * var(--mobile-year) + 26px);
+        height: calc(17 * var(--mobile-year) + 42px);
         margin: 0;
         display: grid;
         grid-template-columns: 44px repeat(3, minmax(0, 1fr));
@@ -860,6 +860,12 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
         color: var(--track-color);
         background: var(--track-color);
         box-shadow: 0 0 0 5px var(--color-surface);
+    }
+    /* Larger invisible hit areas keep small dots easy to tap on phones. */
+    .timeline-mobile-event::before {
+        content: "";
+        position: absolute;
+        inset: -13px;
     }
     .timeline-mobile-event.is-milestone {
         width: 17px;
