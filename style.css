@@ -503,6 +503,11 @@ html[data-theme="cyberpunk"] .tabs button:hover { color: var(--color-focus); }
 .timeline-node strong {
     color: var(--color-text);
 }
+/* Labels can move independently of their date-anchored rails and duration bars.
+   JS calculates only the extra space needed between labels on each track. */
+.timeline-event .timeline-trigger {
+    margin-top: var(--label-offset, 0px);
+}
 .timeline-trigger {
     display: flex;
     align-items: baseline;
@@ -539,7 +544,7 @@ html[data-theme="cyberpunk"] .tabs button:hover { color: var(--color-focus); }
 /* Details float over the calendar so expanding one cannot change the time scale. */
 .timeline-detail {
     position: absolute;
-    top: 2.75rem;
+    top: calc(2.75rem + var(--label-offset, 0px));
     left: 16px;
     width: min(240px, calc(100% - 16px));
     z-index: 2;
@@ -743,29 +748,4 @@ html[data-theme="cyberpunk"] .tabs button:hover { color: var(--color-focus); }
     color: var(--color-text-muted);
     font-weight: 600;
     line-height: 1.75;
-}
-/* The coaching assignment overlaps two 2024 certification milestones.
-   Keep its duration bar dated correctly but offset the visible label. */
-.timeline-event-coach .timeline-trigger {
-    margin-top: 112px;
-}
-.timeline-event-coach .timeline-detail {
-    top: calc(112px + 2.75rem);
-}
-@media (max-width: 760px) {
-    .timeline-event-coach .timeline-detail {
-        top: auto;
-    }
-}
-
-.hero-headline {
-    margin: 1rem 0;
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--color-primary-strong);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .tabs::before { transition: none; }
 }
