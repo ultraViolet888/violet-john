@@ -153,8 +153,23 @@ function selectSiteTab(tab, focusTab = false, trackChange = false) {
 }
 
 if (tabs.length === 2) {
-    const initialTab = location.hash === "#personal" ? tabs[1] : tabs[0];
-    selectSiteTab(initialTab);
+    const personalHashes = new Set(["#personal", "#interests", "#personal-reading"]);
+    const professionalHashes = new Set(["#professional", "#work", "#open-threads", "#professional-reading"]);
+    selectSiteTab(personalHashes.has(location.hash) ? tabs[1] : tabs[0]);
+
+    // Section links switch the visible panel before scrolling to its anchor.
+    document.querySelectorAll(".quick-nav [data-section-link]").forEach(link => {
+        link.addEventListener("click", event => {
+            const view = link.dataset.sectionLink;
+            if (view === "personal") selectSiteTab(tabs[1]);
+            if (view === "professional") selectSiteTab(tabs[0]);
+            const target = document.getElementById(link.hash.slice(1));
+            if (!target) return;
+            event.preventDefault();
+            history.pushState(null, "", link.hash);
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    });
 
     tabs.forEach(tab => tab.addEventListener("click", () => {
         selectSiteTab(tab, false, true);
@@ -173,6 +188,7 @@ if (tabs.length === 2) {
     });
 
     window.addEventListener("hashchange", () => {
-        selectSiteTab(location.hash === "#personal" ? tabs[1] : tabs[0]);
+        if (personalHashes.has(location.hash)) selectSiteTab(tabs[1]);
+        else if (professionalHashes.has(location.hash)) selectSiteTab(tabs[0]);
     });
 }
