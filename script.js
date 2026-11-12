@@ -250,6 +250,32 @@ document.querySelectorAll(".book-cover").forEach((cover) => {
     if (cover.complete && cover.naturalWidth === 0) cover.classList.add("book-cover-unavailable");
 });
 
+/* A single floating cover thumbnail follows desktop hover or keyboard focus.
+   It lives outside scrollable shelves so it won't be clipped by their edges. */
+const spinePreview = document.createElement("img");
+spinePreview.alt = "";
+spinePreview.setAttribute("aria-hidden", "true");
+Object.assign(spinePreview.style, {
+    display: "none", position: "fixed", zIndex: "100",
+    width: "105px", height: "156px", objectFit: "contain",
+    padding: "5px", background: "var(--color-surface-raised)",
+    border: "1px solid var(--color-border)", borderRadius: "6px",
+    boxShadow: "var(--shadow-md)", pointerEvents: "none"
+});
+document.body.append(spinePreview);
+function hideSpinePreview() { spinePreview.style.display = "none"; }
+function showSpinePreview(spine, cover) {
+    if (!cover?.getAttribute("src") || matchMedia("(max-width: 760px)").matches) return;
+    spinePreview.src = cover.getAttribute("src");
+    const box = spine.getBoundingClientRect();
+    const x = box.right + 12 + 105 < innerWidth ? box.right + 12 : box.left - 117;
+    spinePreview.style.left = Math.max(8, x) + "px";
+    spinePreview.style.top = Math.max(8, Math.min(innerHeight - 164, box.top)) + "px";
+    spinePreview.style.display = "block";
+}
+window.addEventListener("scroll", hideSpinePreview, true);
+window.addEventListener("resize", hideSpinePreview);
+
 /* Bookshelves reuse the existing book grid as the source on every screen. */
 document.querySelectorAll(".book-grid").forEach(grid => {
     const cards = [...grid.querySelectorAll(".book-card")];
@@ -304,6 +330,12 @@ document.querySelectorAll(".book-grid").forEach(grid => {
             const spineTitle = document.createElement("span");
             spineTitle.textContent = title;
             spine.append(spineTitle);
+            spine.addEventListener("pointerenter", event => {
+                if (event.pointerType === "mouse") showSpinePreview(spine, cover);
+            });
+            spine.addEventListener("pointerleave", hideSpinePreview);
+            spine.addEventListener("focus", () => showSpinePreview(spine, cover));
+            spine.addEventListener("blur", hideSpinePreview);
             // Sample cover artwork locally, then blend it into the current theme.
             // Missing/unreadable covers keep the existing theme-based spine tint.
             if (cover) {
@@ -338,6 +370,7 @@ document.querySelectorAll(".book-grid").forEach(grid => {
                 else cover.addEventListener("load", applyCoverTint, { once: true });
             }
             spine.addEventListener("click", () => {
+                hideSpinePreview();
                 if (selectedSpine === spine) {
                     closePreview();
                     return;
