@@ -338,7 +338,7 @@ document.querySelectorAll(".book-grid").forEach(grid => {
             spine.addEventListener("blur", hideSpinePreview);
             // Resolve stable book ID to a precomputed theme-aware CSS color token.
             // Changing book order does not change the assigned spine color.
-            const bookId = source.getAttribute("aria-describedby")?.match(/book-tooltip-(\\d+)/)?.[1];
+            const bookId = source.getAttribute("aria-describedby")?.match(/book-tooltip-(\d+)/)?.[1];
             if (bookId) {
                 spine.style.setProperty("--book-spine-color", "var(--book-spine-" + bookId + ")");
             }
