@@ -832,7 +832,7 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     .timeline-mobile-year {
         position: absolute;
         left: 0;
-        top: calc(36px + (16 - var(--year-index)) * var(--mobile-year));
+        top: 0; /* Positioned from event dates in JavaScript. */
         transform: translateY(-50%);
         font-size: 0.72rem;
         color: var(--color-text-muted);
@@ -843,7 +843,7 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
         top: 14px;
         bottom: 12px;
         width: 2px;
-        left: calc(44px + (100% - 44px) * (var(--track-index) + 0.5) / 3);
+        left: 0; /* JS positions the three track centers. */
         transform: translateX(-50%);
         background: var(--track-color);
         opacity: 0.28;
@@ -851,8 +851,8 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     .timeline-mobile-event {
         position: absolute;
         z-index: 1;
-        top: calc(36px + (16 - var(--event-position)) * var(--mobile-year));
-        left: calc(44px + (100% - 44px) * (var(--track-index) + 0.5) / 3);
+        top: 0;
+        left: 0; /* JS positions the three track centers. */
         transform: translate(-50%, -50%);
         border: 0;
         padding: 0;
@@ -870,11 +870,11 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     }
     .timeline-mobile-event.is-interval {
         width: 12px;
-        height: max(12px, calc(var(--event-duration) * var(--mobile-year)));
+        height: 12px; /* JS supplies each duration in pixels. */
         border-radius: 8px;
         transform: translate(-50%, 0);
         /* Duration ends toward the newer date (above its start in this layout). */
-        top: calc(36px + (16 - var(--event-position) - var(--event-duration)) * var(--mobile-year));
+        top: 0;
         transform: translateX(-50%);
     }
     .timeline-mobile-event[aria-pressed="true"] {
