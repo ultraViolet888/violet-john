@@ -310,9 +310,15 @@ a:focus-visible {
 }
 .tabs button:hover { color: var(--color-primary-strong); }
 /* Cyberpunk tabs use the theme's neon pink accent, not its teal primary. */
-html[data-theme="cyberpunk"] .tabs::before { background: var(--color-focus); }
+html[data-theme="cyberpunk"] .tabs::before {
+    background: var(--color-focus);
+    box-shadow: 0 0 8px var(--color-focus), 0 0 18px color-mix(in srgb, var(--color-focus) 55%, transparent);
+}
 html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"],
 html[data-theme="cyberpunk"] .tabs button:hover { color: var(--color-focus); }
+html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
+    text-shadow: 0 0 10px color-mix(in srgb, var(--color-focus) 65%, transparent);
+}
 
 .site-panel > .section-block:first-child {
     margin-top: 1.5rem;
