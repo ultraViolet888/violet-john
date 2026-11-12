@@ -195,8 +195,12 @@
                     <span>Year</span><span>Education</span><span>Career</span><span>Growth</span>
                 </div>
                 <div class="timeline-mobile-map" role="group" aria-label="Career events plotted across three tracks from 2026 back to 2010"></div>
-                <div class="timeline-mobile-details" aria-live="polite" aria-atomic="true">
-                    <p>Choose an event above to read its story.</p>
+                <div class="timeline-mobile-details" id="timeline-mobile-details" role="region" aria-label="Selected timeline event" hidden>
+                    <div class="timeline-mobile-details-header">
+                        <span class="timeline-mobile-details-hint">Selected event</span>
+                        <button class="timeline-mobile-close" type="button" aria-label="Close event details">×</button>
+                    </div>
+                    <div class="timeline-mobile-details-body" aria-live="polite" aria-atomic="true"></div>
                 </div>
             </div>
         </section>
