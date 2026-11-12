@@ -188,6 +188,14 @@ a:focus-visible {
     margin-bottom: 0.25rem;
 }
 
+.hero-headline {
+    margin: 1rem 0;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-primary-strong);
+}
+
 .legal-name {
     margin: 0 0 1.5rem;
     font-style: italic;
