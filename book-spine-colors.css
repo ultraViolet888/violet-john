@@ -1,0 +1,67 @@
+/* Curated book-spine palette, keyed by the stable book-tooltip IDs in index.html.
+   These are static editorial colors, not live cover-image samples.
+   To retune a book, change only its token. */
+:root {
+    --book-spine-1: #CA6C45; /* The Phoenix Project */
+    --book-spine-2: #457EA1; /* The DevOps Handbook */
+    --book-spine-3: #AD72C1; /* The Unicorn Project */
+    --book-spine-4: #D78B56; /* The Fearless Organization */
+    --book-spine-5: #3A8F9C; /* Turn the Ship Around! */
+    --book-spine-6: #3776A4; /* Deep Work */
+    --book-spine-7: #CF6F4C; /* Team Topologies */
+    --book-spine-8: #CD765F; /* Wiring the Winning Organization */
+    --book-spine-9: #447F92; /* The Toyota Way */
+    --book-spine-10: #78984D; /* Industrial DevOps */
+    --book-spine-11: #C79A45; /* The Goal */
+    --book-spine-12: #8A679F; /* Practice Makes Culture */
+    --book-spine-13: #7C9B56; /* Nature's Best Hope */
+    --book-spine-14: #BB7D8D; /* Crying in H Mart */
+    --book-spine-15: #DC8D58; /* Tomorrow, and Tomorrow, and Tomorrow */
+    --book-spine-16: #D18C75; /* Anxious People */
+    --book-spine-17: #739D8A; /* Braiding Sweetgrass */
+    --book-spine-18: #68977F; /* Gathering Moss */
+    --book-spine-19: #477C99; /* Children of Time */
+    --book-spine-20: #7866AC; /* Children of Ruin */
+    --book-spine-21: #5A718E; /* Children of Memory */
+    --book-spine-22: #9B627D; /* Children of Strife */
+    --book-spine-23: #927B9F; /* Rules of Civility */
+    --book-spine-24: #CA805B; /* Maybe You Should Talk to Someone */
+    --book-spine-25: #61869E; /* Keeper of Enchanted Rooms */
+    --book-spine-26: #71A4A9; /* Happiness Falls */
+    --book-spine-27: #C38B63; /* Hunt, Gather, Parent */
+    --book-spine-28: #79A98D; /* A Psalm for the Wild-Built */
+    --book-spine-29: #BD9A77; /* A Prayer for the Crown-Shy */
+    --book-spine-30: #B57689; /* Scattered Minds */
+    --book-spine-31: #9B9269; /* The Sound of a Wild Snail Eating */
+    --book-spine-32: #6D74A7; /* The Galaxy, and the Ground Within */
+    --book-spine-33: #7F9D74; /* The Priory of the Orange Tree */
+    --book-spine-34: #BC6C67; /* A Day of Fallen Night */
+    --book-spine-35: #BE8564; /* Among the Burning Flowers */
+    --book-spine-36: #A0A4BA; /* The Bullet That Missed */
+    --book-spine-37: #6882AD; /* The Man Who Died Twice */
+    --book-spine-38: #579E9F; /* Ready Player One */
+    --book-spine-39: #D19073; /* The Thursday Murder Club */
+    --book-spine-40: #C48C62; /* How to Work in Denmark */
+    --book-spine-41: #8B6A9F; /* The Witch's Path */
+
+    /* Shared bookshelf treatment; theme overrides below. */
+    --book-spine-mix: 62%;
+    --book-spine-surface: var(--color-surface);
+}
+html[data-theme="violet"] {
+    --book-spine-mix: 52%;
+    --book-spine-surface: var(--color-primary-soft);
+}
+html[data-theme="night"] {
+    --book-spine-mix: 54%;
+    --book-spine-surface: var(--color-surface-raised);
+}
+html[data-theme="cyberpunk"] {
+    --book-spine-mix: 55%;
+    --book-spine-surface: var(--color-primary-soft);
+}
+.book-spine {
+    background: color-mix(in srgb,
+        var(--book-spine-color, var(--color-primary)) var(--book-spine-mix),
+        var(--book-spine-surface));
+}
