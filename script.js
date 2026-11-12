@@ -81,6 +81,23 @@ fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
    content and expand its height when a selected detail card needs more space. */
 const historyTimeline = document.querySelector(".history-timeline");
 if (historyTimeline) {
+    // Read dates from the existing detail cards; the mobile view shares the
+    // same source of truth and never maintains a second event list.
+    historyTimeline.querySelectorAll(".timeline-event").forEach(entry => {
+        const trigger = entry.querySelector(".timeline-trigger");
+        const details = entry.querySelector(".timeline-detail");
+        if (!trigger || !details) return;
+        const dates = [...details.querySelectorAll(".timeline-detail-date")]
+            .map(item => item.textContent.trim());
+        const date = dates.length > 1 ? "2024 · May–Sep" : (dates[0] || "");
+        const category = entry.classList.contains("timeline-event-career") ? "Career" :
+            entry.classList.contains("timeline-event-education") ? "Education" : "Growth";
+        const meta = document.createElement("span");
+        meta.className = "timeline-mobile-meta";
+        meta.textContent = [date, category].filter(Boolean).join(" · ");
+        trigger.append(meta);
+    });
+
     function spaceTimelineLabels() {
         const entries = [...historyTimeline.querySelectorAll(".timeline-event")];
         entries.forEach(entry => entry.style.removeProperty("--label-offset"));
@@ -108,6 +125,13 @@ if (historyTimeline) {
         // Reset first so closing a card actually shrinks the timeline again.
         historyTimeline.style.height = "";
         if (historyTimeline.getClientRects().length === 0) return;
+        // The mobile version flows naturally; absolute-positioned height
+        // calculations and label offsets only apply to the desktop timeline.
+        if (window.matchMedia("(max-width: 760px)").matches) {
+            historyTimeline.querySelectorAll(".timeline-event").forEach(entry =>
+                entry.style.removeProperty("--label-offset"));
+            return;
+        }
         spaceTimelineLabels();
 
         const yearHeight = parseFloat(
