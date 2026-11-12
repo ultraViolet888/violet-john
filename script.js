@@ -81,22 +81,63 @@ fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
    content and expand its height when a selected detail card needs more space. */
 const historyTimeline = document.querySelector(".history-timeline");
 if (historyTimeline) {
-    // Read dates from the existing detail cards; the mobile view shares the
-    // same source of truth and never maintains a second event list.
-    historyTimeline.querySelectorAll(".timeline-event").forEach(entry => {
-        const trigger = entry.querySelector(".timeline-trigger");
-        const details = entry.querySelector(".timeline-detail");
-        if (!trigger || !details) return;
-        const dates = [...details.querySelectorAll(".timeline-detail-date")]
-            .map(item => item.textContent.trim());
-        const date = dates.length > 1 ? "2024 · May–Sep" : (dates[0] || "");
-        const category = entry.classList.contains("timeline-event-career") ? "Career" :
-            entry.classList.contains("timeline-event-education") ? "Education" : "Growth";
-        const meta = document.createElement("span");
-        meta.className = "timeline-mobile-meta";
-        meta.textContent = [date, category].filter(Boolean).join(" · ");
-        trigger.append(meta);
-    });
+    // Render the phone's three-track map directly from the desktop entries.
+    const mobileMap = document.querySelector(".timeline-mobile-map");
+    const mobileDetails = document.querySelector(".timeline-mobile-details");
+    if (mobileMap && mobileDetails) {
+        const tracks = ["education", "career", "growth"];
+        for (let year = 2010; year <= 2026; year++) {
+            const label = document.createElement("span");
+            label.className = "timeline-mobile-year";
+            label.style.setProperty("--year-index", String(year - 2010));
+            label.textContent = String(year);
+            mobileMap.append(label);
+        }
+        tracks.forEach((track, index) => {
+            const rail = document.createElement("span");
+            rail.className = "timeline-mobile-rail";
+            rail.style.setProperty("--track-index", String(index));
+            rail.style.setProperty("--track-color", "var(--timeline-" + track + ")");
+            rail.setAttribute("aria-hidden", "true");
+            mobileMap.append(rail);
+        });
+        [...historyTimeline.querySelectorAll(".timeline-event")]
+            .sort((a, b) => parseFloat(b.style.getPropertyValue("--event-position")) -
+                parseFloat(a.style.getPropertyValue("--event-position")))
+            .forEach(entry => {
+                const trigger = entry.querySelector(".timeline-trigger");
+                const detail = entry.querySelector(".timeline-detail");
+                if (!trigger || !detail) return;
+                const track = tracks.find(t => entry.classList.contains("timeline-event-" + t));
+                const name = trigger.querySelector("strong")?.textContent.trim() || "Timeline event";
+                const dates = [...detail.querySelectorAll(".timeline-detail-date")].map(el => el.textContent.trim());
+                const marker = document.createElement("button");
+                marker.type = "button";
+                marker.className = "timeline-mobile-event " +
+                    (entry.classList.contains("timeline-interval") ? "is-interval" : "is-milestone");
+                marker.style.setProperty("--event-position", entry.style.getPropertyValue("--event-position"));
+                marker.style.setProperty("--event-duration", entry.style.getPropertyValue("--event-duration") || "0");
+                marker.style.setProperty("--track-index", String(tracks.indexOf(track)));
+                marker.style.setProperty("--track-color", "var(--timeline-" + track + ")");
+                marker.setAttribute("aria-label", name + ", " + (dates.length > 1 ? "2024" : dates[0] || "") + ". Show details");
+                marker.setAttribute("aria-pressed", "false");
+                marker.addEventListener("click", () => {
+                    mobileMap.querySelectorAll(".timeline-mobile-event").forEach(node =>
+                        node.setAttribute("aria-pressed", String(node === marker)));
+                    mobileDetails.replaceChildren();
+                    const heading = document.createElement("h3");
+                    heading.textContent = name;
+                    mobileDetails.append(heading);
+                    const copy = detail.cloneNode(true);
+                    copy.removeAttribute("id");
+                    copy.removeAttribute("hidden");
+                    copy.classList.remove("timeline-detail");
+                    mobileDetails.append(...copy.childNodes);
+                    if (window.umami?.track) window.umami.track("timeline-expand", { item: name });
+                });
+                mobileMap.append(marker);
+            });
+    }
 
     function spaceTimelineLabels() {
         const entries = [...historyTimeline.querySelectorAll(".timeline-event")];
