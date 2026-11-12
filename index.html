@@ -75,11 +75,12 @@
             </div>
         </header>
 
-        <section class="tabs">
-            <button>Professional</button>
-            <button>Personal</button>
-        </section>
+        <nav class="tabs" role="tablist" aria-label="Site sections">
+            <button id="professional-tab" type="button" role="tab" aria-selected="true" aria-controls="professional-panel" tabindex="0">Professional</button>
+            <button id="personal-tab" type="button" role="tab" aria-selected="false" aria-controls="personal-panel" tabindex="-1">Personal</button>
+        </nav>
 
+        <div id="professional-panel" class="site-panel" role="tabpanel" aria-labelledby="professional-tab" tabindex="0">
         <section class="section-block">
             <h2>Work</h2>
 
@@ -115,8 +116,8 @@
                 <span class="timeline-rail timeline-rail-growth" aria-hidden="true"></span>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:0.7500; --event-duration:3.4167;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-1" title="Worked full-time before university, developing coordination and people skills while learning the value of hard physical work."><strong>Mortuary Administrator</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-1" hidden><span class="timeline-detail-date">Oct 2010 – Mar 2014</span><span class="timeline-detail-organization">Hillside Memorial Park and Mortuary</span>Worked full-time before university, developing coordination and people skills while learning the value of hard physical work.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-1" title="TL;DR: I dug graves then spoke to the health department."><strong>Mortuary Administrator</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-1" hidden><span class="timeline-detail-date">Oct 2010 – Mar 2014</span><span class="timeline-detail-organization">Hillside Memorial Park and Mortuary</span>TL;DR: I dug graves then spoke to the health department.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-education timeline-interval" style="--event-position:1.4167; --event-duration:4.0000;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
@@ -140,13 +141,13 @@
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:7.4167; --event-duration:4.2500;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-5" title="Developed launch vehicle simulations and verification analyses; supported three missions and day-of-launch go/no-go operations."><strong>Guidance, Navigation &amp; Control Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-5" hidden><span class="timeline-detail-date">Jun 2017 – Sep 2021</span><span class="timeline-detail-organization">SAIC</span>Developed launch vehicle simulations and verification analyses; supported three missions and day-of-launch go/no-go operations.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-5" title="TL;DR: I double checked rockets."><strong>Guidance, Navigation &amp; Control Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-5" hidden><span class="timeline-detail-date">Jun 2017 – Sep 2021</span><span class="timeline-detail-organization">SAIC</span>TL;DR: I double checked rockets.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:11.6667; --event-duration:2.4166;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-6" title="Led a six-person radar verification team; completed requirements verification on time for approximately $2M against a $3M budget."><strong>Lead Verification &amp; Validation Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-6" hidden><span class="timeline-detail-date">Sep 2021 – Feb 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>Led a six-person radar verification team; completed requirements verification on time for approximately $2M against a $3M budget.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-6" title="TL;DR: I double checked the big radar."><strong>Lead Verification &amp; Validation Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-6" hidden><span class="timeline-detail-date">Sep 2021 – Feb 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I double checked the big radar.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:12.4167;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
@@ -155,18 +156,23 @@
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-interval" style="--event-position:13.5833; --event-duration:0.4167;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-8" title="Led five engineers in building an ISO 9001-aligned quality framework in four months for under $100K."><strong>Quality Management System Project Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-8" hidden><span class="timeline-detail-date">Aug 2023 – Jan 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>Led five engineers in building an ISO 9001-aligned quality framework in four months for under $100K.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-8" title="TL;DR: I built a quality system for the quality people."><strong>Quality Management System Project Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-8" hidden><span class="timeline-detail-date">Aug 2023 – Jan 2024</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I built a quality system for the quality people.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:14.0833; --event-duration:1.3334;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-9" title="Supported ten simulation and digital twin software teams, coordinating delivery and coaching teams; also coached through the Corporate Coaching Network alongside my primary role."><strong>Agile Program Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-9" hidden><span class="timeline-detail-date">Feb 2024 – Jun 2025</span><span class="timeline-detail-organization">Lockheed Martin</span>Supported ten simulation and digital twin software teams, coordinating delivery and coaching teams; also coached through the Corporate Coaching Network alongside my primary role.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-9" title="TL;DR: I helped 10 software teams figure out what they were actually trying to do."><strong>Agile Program Lead</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-9" hidden><span class="timeline-detail-date">Feb 2024 – Jun 2025</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I helped 10 software teams figure out what they were actually trying to do.</p>
                 </div>
                                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:14.3333;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
                     <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-15" title="Earned the SAFe 6 Agilist certification in May 2024."><strong>SAFe 6 Agilist</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
                     <p class="timeline-detail" id="timeline-detail-15" hidden><span class="timeline-detail-date">May 2024</span>Earned the SAFe 6 Agilist certification.</p>
+                </div>
+                                <div class="timeline-node timeline-event timeline-event-growth timeline-interval timeline-event-coach" style="--event-position:14.4167; --event-duration:2.4167;">
+                    <span class="timeline-duration-bar" aria-hidden="true"></span>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-16" title="Coached teams, Scrum Masters, and Product Owners through the Corporate Coaching Network alongside my primary role."><strong>Agile Coach</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                    <p class="timeline-detail" id="timeline-detail-16" hidden><span class="timeline-detail-date">Jun 2024 – Present</span><span class="timeline-detail-organization">Lockheed Martin · Corporate Coaching Network</span>Supported teams, Scrum Masters, and Product Owners with facilitation, delivery, and product practices alongside my primary role.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:14.6667;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
@@ -175,13 +181,13 @@
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval" style="--event-position:15.4167; --event-duration:0.6666;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-11" title="Led approximately 20 engineers across two radar software teams and planned a strangler-fig modernization toward modular, containerized components."><strong>Lead Software Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-11" hidden><span class="timeline-detail-date">Jun 2025 – Feb 2026</span><span class="timeline-detail-organization">Lockheed Martin</span>Led approximately 20 engineers across two radar software teams and planned a strangler-fig modernization toward modular, containerized components.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-11" title="TL;DR: I helped modernize the big radar software without breaking the big radar."><strong>Lead Software Engineer</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-11" hidden><span class="timeline-detail-date">Jun 2025 – Feb 2026</span><span class="timeline-detail-organization">Lockheed Martin</span>TL;DR: I helped modernize the big radar software without breaking the big radar.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-career timeline-interval current-node" style="--event-position:16.0833; --event-duration:0.7500;">
                     <span class="timeline-duration-bar" aria-hidden="true"></span>
-                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-12" title="Owned five internal digital products, reduced more than 40 bugs to zero in one sprint, and helped automate smoke tests, enabling a fourfold increase in release frequency."><strong>Product Owner</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
-                <p class="timeline-detail" id="timeline-detail-12" hidden><span class="timeline-detail-date">Feb 2026 – Present</span><span class="timeline-detail-organization">Lockheed Martin · Internal Digital Products</span>Owned five internal digital products, reduced more than 40 bugs to zero in one sprint, and helped automate smoke tests, enabling a fourfold increase in release frequency.</p>
+                    <button class="timeline-trigger" type="button" aria-expanded="false" aria-controls="timeline-detail-12" title="TL;DR: I ask people what hurts, then help turn that into software."><strong>Product Owner</strong><span class="timeline-selection-dot" aria-hidden="true"></span></button>
+                <p class="timeline-detail" id="timeline-detail-12" hidden><span class="timeline-detail-date">Feb 2026 – Present</span><span class="timeline-detail-organization">Lockheed Martin · Internal Digital Products</span>TL;DR: I ask people what hurts, then help turn that into software.</p>
                 </div>
                 <div class="timeline-node timeline-event timeline-event-growth timeline-milestone" style="--event-position:16.4167;">
                     <span class="timeline-milestone-dot" aria-hidden="true"></span>
@@ -220,7 +226,55 @@
             </ul>
         </section>
 
-        <section class="section-block" id="reading">
+                <section class="section-block" id="built-with">
+            <h2>Built with</h2>
+            <p class="tech-list">HTML5 · CSS3 · JavaScript · SVG · Git · GitHub Pages · Umami</p>
+        </section>
+
+        </div>
+
+        <div id="personal-panel" class="site-panel" role="tabpanel" aria-labelledby="personal-tab" tabindex="0" hidden>
+        <section class="section-block" id="interests">
+            <h2>Outside of work</h2>
+            <p>I'm usually making, growing, reading, riding, or learning something new.</p>
+            <div class="interest-grid" aria-label="Personal interests">
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🏍️</span>
+                    <h3>Motorcycles</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🌱</span>
+                    <h3>Native gardening</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">✒️</span>
+                    <h3>Fountain pens &amp; calligraphy</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🎮</span>
+                    <h3>Video games</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">💅</span>
+                    <h3>Nail painting</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">💄</span>
+                    <h3>Makeup</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">👗</span>
+                    <h3>Fashion</h3>
+                </article>
+                <article class="interest-card">
+                    <span class="interest-symbol" aria-hidden="true">🍲</span>
+                    <h3>Food</h3>
+                </article>
+            </div>
+            <p class="interest-note">A first pass at this section. The interests are real; the presentation is still a work in progress.</p>
+        </section>
+
+<section class="section-block" id="reading">
             <h2>Things I've been reading</h2>
             <p>I read quite a bit about organizations, manufacturing, software, leadership, and why groups of otherwise sensible people occasionally make work astonishingly difficult.</p>
             <div class="book-grid" aria-label="Books on my reading shelf">
@@ -312,31 +366,7 @@
             
         </section>
 
-        <section class="section-block">
-            <h2>How This Site Is Built</h2>
-
-            <p>
-                A lightweight, dependency-free portfolio built in the open, one small pull request at a time. No front-end framework or build system yet.
-            </p>
-
-            <h3>Built with</h3>
-            <ul>
-                <li>Semantic HTML5 for structure, links, and accessible controls</li>
-                <li>CSS3 with Grid, responsive layouts, custom properties, and multiple color themes</li>
-                <li>Vanilla JavaScript for interactive timeline details, theme selection, and image fallbacks</li>
-                <li>Locally hosted JPEG book covers and an SVG favicon</li>
-                <li>Git and GitHub pull requests for version control and incremental changes</li>
-                <li>GitHub Pages for static-site hosting and publishing</li>
-                <li>GitHub API for displaying the repository’s latest update date</li>
-            </ul>
-
-            <h3>On the roadmap</h3>
-            <ul>
-                <li>Automated testing, accessibility checks, and a more deliberate CI/CD pipeline</li>
-                <li>Visitor metrics and product analytics</li>
-                <li>Additional interactive features and, eventually, serverless APIs</li>
-            </ul>
-        </section>
+                </div>
 
         <footer class="site-footer">
             <p>
