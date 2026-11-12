@@ -577,8 +577,10 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
 
 /* One expandable entry preserves the three separate 2024 dates and descriptions. */
 .timeline-detail-group {
-    width: min(315px, calc(100% + 110px));
-    max-width: calc(100vw - 3rem);
+    /* Stay within the Growth track; oversized cards expand scroll width. */
+    width: calc(100% - 16px);
+    max-width: none;
+    overflow-wrap: anywhere;
     line-height: 1.45;
 }
 .timeline-detail-group > strong {
