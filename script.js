@@ -85,6 +85,17 @@ if (historyTimeline) {
     const mobileMap = document.querySelector(".timeline-mobile-map");
     const mobileDetails = document.querySelector(".timeline-mobile-details");
     if (mobileMap && mobileDetails) {
+        const detailsBody = mobileDetails.querySelector(".timeline-mobile-details-body");
+        const closeButton = mobileDetails.querySelector(".timeline-mobile-close");
+        const closeMobileDetails = () => {
+            mobileDetails.hidden = true;
+            mobileMap.querySelectorAll(".timeline-mobile-event").forEach(node =>
+                node.setAttribute("aria-pressed", "false"));
+        };
+        closeButton.addEventListener("click", closeMobileDetails);
+        mobileMap.addEventListener("keydown", event => {
+            if (event.key === "Escape") closeMobileDetails();
+        });
         const tracks = ["education", "career", "growth"];
         for (let year = 2010; year <= 2026; year++) {
             const label = document.createElement("span");
@@ -129,17 +140,25 @@ if (historyTimeline) {
                 marker.setAttribute("aria-label", name + ", " + (dates.length > 1 ? "2024" : dates[0] || "") + ". Show details");
                 marker.setAttribute("aria-pressed", "false");
                 marker.addEventListener("click", () => {
+                    if (marker.getAttribute("aria-pressed") === "true") {
+                        closeMobileDetails();
+                        return;
+                    }
                     mobileMap.querySelectorAll(".timeline-mobile-event").forEach(node =>
                         node.setAttribute("aria-pressed", String(node === marker)));
-                    mobileDetails.replaceChildren();
+                    mobileDetails.style.setProperty("--mobile-selected-color",
+                        "var(--timeline-" + track + ")");
+                    detailsBody.replaceChildren();
                     const heading = document.createElement("h3");
                     heading.textContent = name;
-                    mobileDetails.append(heading);
+                    detailsBody.append(heading);
                     const copy = detail.cloneNode(true);
                     copy.removeAttribute("id");
                     copy.removeAttribute("hidden");
                     copy.classList.remove("timeline-detail");
-                    mobileDetails.append(...copy.childNodes);
+                    detailsBody.append(...copy.childNodes);
+                    mobileDetails.scrollTop = 0;
+                    mobileDetails.hidden = false;
                     if (window.umami?.track) window.umami.track("timeline-expand", { item: name });
                 });
                 mobileMap.append(marker);
