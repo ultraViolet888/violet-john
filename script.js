@@ -105,7 +105,6 @@ if (historyTimeline) {
     window.addEventListener("resize", fitTimelineHeight);
 
     historyTimeline.addEventListener("click", (event) => {
-    historyTimeline.addEventListener("click", (event) => {
         const entry = event.target.closest(".timeline-event");
         if (!entry || !historyTimeline.contains(entry)) return;
         const trigger = entry.querySelector(".timeline-trigger");
