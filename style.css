@@ -793,67 +793,119 @@ html[data-theme="cyberpunk"] .tabs [role="tab"][aria-selected="true"] {
     line-height: 1.75;
 }
 
-.timeline-mobile-meta { display: none !important; }
 
-/* Phone timeline: a linear, newest-first reading layout using the original
-   timeline entries, dates and detail cards (no duplicated event data). */
+/* Mobile: three chronological tracks, keeping the desktop timeline untouched. */
+.timeline-mobile { display: none; }
 @media (max-width: 760px) {
-    .timeline-scroll {
-        overflow-x: visible;
-        overscroll-behavior-inline: auto;
+    .timeline-scroll, #timeline-help { display: none; }
+    .timeline-mobile { display: block; margin-top: 1.25rem; }
+    .timeline-mobile-help {
+        margin: 0 0 1rem;
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
     }
-    .timeline-headings, .timeline-years, .timeline-rail,
-    .timeline-duration-bar, .timeline-milestone-dot {
-        display: none;
+    .timeline-mobile-head {
+        display: grid;
+        grid-template-columns: 44px repeat(3, minmax(0, 1fr));
+        align-items: end;
+        gap: 4px;
+        font-size: clamp(0.67rem, 2.7vw, 0.85rem);
+        font-weight: 700;
+        text-align: center;
     }
-    .history-timeline {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 0.75rem;
-        min-width: 0;
-        height: auto !important;
-        margin-top: 1.2rem;
+    .timeline-mobile-head span {
+        padding: 0.3rem 0;
+        border-bottom: 2px solid var(--color-border);
     }
-    .history-timeline .timeline-event {
+    .timeline-mobile-head span:nth-child(2) { border-color: var(--timeline-education); }
+    .timeline-mobile-head span:nth-child(3) { border-color: var(--timeline-career); }
+    .timeline-mobile-head span:nth-child(4) { border-color: var(--timeline-growth); }
+    .timeline-mobile-map {
+        --mobile-year: 44px;
         position: relative;
-        inset: auto;
-        width: 100%;
-        height: auto;
-        min-height: 0;
-        padding: 0.85rem 1rem;
-        border: 1px solid var(--color-border);
-        border-left: 4px solid var(--timeline-track-color);
-        border-radius: var(--radius-md);
-        background: var(--color-surface-raised);
-    }
-    .history-timeline .timeline-trigger {
+        height: calc(17 * var(--mobile-year) + 26px);
         margin: 0;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 0.2rem 0.75rem;
+        grid-template-columns: 44px repeat(3, minmax(0, 1fr));
+        background: var(--color-surface);
     }
-    .history-timeline .timeline-trigger strong { grid-column: 1; }
-    .history-timeline .timeline-selection-dot { grid-column: 2; grid-row: 1 / span 2; }
-    .timeline-mobile-meta {
-        display: block !important;
-        grid-column: 1;
-        grid-row: 2;
+    .timeline-mobile-year {
+        position: absolute;
+        left: 0;
+        top: calc(36px + (16 - var(--year-index)) * var(--mobile-year));
+        transform: translateY(-50%);
+        font-size: 0.72rem;
         color: var(--color-text-muted);
-        font-size: 0.78rem;
-        line-height: 1.4;
+        font-weight: 600;
     }
-    .history-timeline .timeline-detail {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 0.75rem;
-        padding: 0.75rem;
-        box-shadow: none;
+    .timeline-mobile-rail {
+        position: absolute;
+        top: 14px;
+        bottom: 12px;
+        width: 2px;
+        left: calc(44px + (100% - 44px) * (var(--track-index) + 0.5) / 3);
+        transform: translateX(-50%);
+        background: var(--track-color);
+        opacity: 0.28;
+    }
+    .timeline-mobile-event {
+        position: absolute;
+        z-index: 1;
+        top: calc(36px + (16 - var(--event-position)) * var(--mobile-year));
+        left: calc(44px + (100% - 44px) * (var(--track-index) + 0.5) / 3);
+        transform: translate(-50%, -50%);
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        color: var(--track-color);
+        background: var(--track-color);
+        box-shadow: 0 0 0 5px var(--color-surface);
+    }
+    .timeline-mobile-event.is-milestone {
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        border: 3px solid var(--color-surface);
+        outline: 2px solid var(--track-color);
+    }
+    .timeline-mobile-event.is-interval {
+        width: 12px;
+        height: max(12px, calc(var(--event-duration) * var(--mobile-year)));
+        border-radius: 8px;
+        transform: translate(-50%, 0);
+        /* Duration ends toward the newer date (above its start in this layout). */
+        top: calc(36px + (16 - var(--event-position) - var(--event-duration)) * var(--mobile-year));
+        transform: translateX(-50%);
+    }
+    .timeline-mobile-event[aria-pressed="true"] {
+        z-index: 4;
+        box-shadow: 0 0 0 5px var(--color-surface), 0 0 0 8px var(--track-color);
+    }
+    .timeline-mobile-event:focus-visible {
+        outline: 3px solid var(--color-focus);
+        outline-offset: 7px;
+    }
+    .timeline-mobile-details {
+        min-height: 85px;
+        margin-top: 0.7rem;
+        padding: 1rem;
+        background: var(--color-surface-raised);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
         overflow-wrap: anywhere;
     }
-    .history-timeline .timeline-event:has(.timeline-trigger[aria-expanded="true"]) {
-        z-index: 2;
+    .timeline-mobile-details > h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+    .timeline-mobile-details p { margin: 0.3rem 0; }
+    .timeline-mobile-details .timeline-detail-date,
+    .timeline-mobile-details .timeline-detail-organization {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--color-text-muted);
+    }
+    .timeline-mobile-details .timeline-group-list {
+        margin-top: 0.6rem;
+    }
+    html[data-theme="cyberpunk"] .timeline-mobile-event[aria-pressed="true"] {
+        filter: drop-shadow(0 0 6px var(--track-color));
     }
 }
