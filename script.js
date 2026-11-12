@@ -81,10 +81,34 @@ fetch("https://api.github.com/repos/ultraviolet888/violet-john/commits/main")
    content and expand its height when a selected detail card needs more space. */
 const historyTimeline = document.querySelector(".history-timeline");
 if (historyTimeline) {
+    function spaceTimelineLabels() {
+        const entries = [...historyTimeline.querySelectorAll(".timeline-event")];
+        entries.forEach(entry => entry.style.removeProperty("--label-offset"));
+
+        // Each track has its own labels; keep dates and duration bars untouched.
+        for (const track of ["education", "career", "growth"]) {
+            const trackEntries = entries
+                .filter(entry => entry.classList.contains("timeline-event-" + track))
+                .sort((a, b) => a.offsetTop - b.offsetTop);
+            let previousBottom = -Infinity;
+
+            for (const entry of trackEntries) {
+                const label = entry.querySelector(".timeline-trigger");
+                if (!label) continue;
+                const labelTop = label.getBoundingClientRect().top;
+                const labelHeight = label.getBoundingClientRect().height;
+                const extraSpace = Math.max(0, Math.ceil(previousBottom + 12 - labelTop));
+                entry.style.setProperty("--label-offset", extraSpace + "px");
+                previousBottom = labelTop + extraSpace + labelHeight;
+            }
+        }
+    }
+
     function fitTimelineHeight() {
         // Reset first so closing a card actually shrinks the timeline again.
         historyTimeline.style.height = "";
         if (historyTimeline.getClientRects().length === 0) return;
+        spaceTimelineLabels();
 
         const yearHeight = parseFloat(
             getComputedStyle(historyTimeline).getPropertyValue("--timeline-year-height")
