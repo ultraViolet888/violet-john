@@ -405,6 +405,53 @@ document.querySelectorAll(".book-grid").forEach(grid => {
     grid.classList.add("shelf-enhanced");
 });
 
+/* Personal interest stories stay editable in HTML templates.
+   The grid remains compact; selecting an interest reveals the full narrative. */
+const interestGrid = document.querySelector(".interest-grid");
+const interestStory = document.getElementById("interest-story");
+if (interestGrid && interestStory) {
+    const buttons = [...interestGrid.querySelectorAll(".interest-trigger")];
+    const body = interestStory.querySelector(".interest-story-body");
+    const close = interestStory.querySelector(".interest-story-close");
+    let selectedButton = null;
+    function closeInterest() {
+        if (selectedButton) selectedButton.setAttribute("aria-expanded", "false");
+        selectedButton = null;
+        interestStory.hidden = true;
+    }
+    buttons.forEach(button => button.addEventListener("click", () => {
+        if (selectedButton === button) {
+            closeInterest();
+            return;
+        }
+        const template = document.getElementById("interest-" + button.dataset.interest);
+        if (!template || !body) return;
+        if (selectedButton) selectedButton.setAttribute("aria-expanded", "false");
+        selectedButton = button;
+        button.setAttribute("aria-expanded", "true");
+        body.replaceChildren(template.content.cloneNode(true));
+        interestStory.hidden = false;
+        if (window.matchMedia("(max-width: 760px)").matches) {
+            interestStory.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+        if (window.umami?.track) {
+            window.umami.track("interest-expand", { interest: button.dataset.interest });
+        }
+    }));
+    close?.addEventListener("click", () => {
+        const last = selectedButton;
+        closeInterest();
+        last?.focus();
+    });
+    interestStory.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            const last = selectedButton;
+            closeInterest();
+            last?.focus();
+        }
+    });
+}
+
 /* Two accessible views; all professional and personal content stays in one page. */
 const tabs = Array.from(document.querySelectorAll('.tabs [role="tab"]'));
 function selectSiteTab(tab, focusTab = false, trackChange = false) {
