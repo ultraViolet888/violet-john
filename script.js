@@ -89,14 +89,16 @@ if (historyTimeline) {
         for (let year = 2010; year <= 2026; year++) {
             const label = document.createElement("span");
             label.className = "timeline-mobile-year";
-            label.style.setProperty("--year-index", String(year - 2010));
+            label.style.top = (36 + (2026 - year) * 44) + "px";
             label.textContent = String(year);
             mobileMap.append(label);
         }
         tracks.forEach((track, index) => {
             const rail = document.createElement("span");
             rail.className = "timeline-mobile-rail";
-            rail.style.setProperty("--track-index", String(index));
+            const fraction = (index + 0.5) / 3;
+            rail.style.left = "calc(" + (44 * (1 - fraction)).toFixed(2) +
+                "px + " + (fraction * 100).toFixed(4) + "%)";
             rail.style.setProperty("--track-color", "var(--timeline-" + track + ")");
             rail.setAttribute("aria-hidden", "true");
             mobileMap.append(rail);
@@ -115,9 +117,14 @@ if (historyTimeline) {
                 marker.type = "button";
                 marker.className = "timeline-mobile-event " +
                     (entry.classList.contains("timeline-interval") ? "is-interval" : "is-milestone");
-                marker.style.setProperty("--event-position", entry.style.getPropertyValue("--event-position"));
-                marker.style.setProperty("--event-duration", entry.style.getPropertyValue("--event-duration") || "0");
-                marker.style.setProperty("--track-index", String(tracks.indexOf(track)));
+                const position = parseFloat(entry.style.getPropertyValue("--event-position"));
+                const duration = parseFloat(entry.style.getPropertyValue("--event-duration")) || 0;
+                const fraction = (tracks.indexOf(track) + 0.5) / 3;
+                const interval = entry.classList.contains("timeline-interval");
+                marker.style.top = (36 + (16 - position - (interval ? duration : 0)) * 44) + "px";
+                if (interval) marker.style.height = Math.max(12, duration * 44) + "px";
+                marker.style.left = "calc(" + (44 * (1 - fraction)).toFixed(2) +
+                    "px + " + (fraction * 100).toFixed(4) + "%)";
                 marker.style.setProperty("--track-color", "var(--timeline-" + track + ")");
                 marker.setAttribute("aria-label", name + ", " + (dates.length > 1 ? "2024" : dates[0] || "") + ". Show details");
                 marker.setAttribute("aria-pressed", "false");
