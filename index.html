@@ -37,7 +37,7 @@
 
 <body>
     <main class="page">
-        <header class="hero">
+        <header class="hero" id="top">
             <h1 class="hero-name">Violet John</h1>
 
 
@@ -70,13 +70,22 @@
             </div>
         </header>
 
+        <nav class="quick-nav" aria-label="Page navigation">
+            <a href="#top" data-section-link="top">Top</a>
+            <a href="#work" data-section-link="professional">Work</a>
+            <a href="#open-threads" data-section-link="professional">Open Threads</a>
+            <a href="#professional-reading" data-section-link="professional">Reading</a>
+            <a href="#interests" data-section-link="personal">Personal</a>
+            <a href="#connect" data-section-link="shared">Connect</a>
+        </nav>
+
         <nav class="tabs" role="tablist" aria-label="Site sections">
             <button id="professional-tab" type="button" role="tab" aria-selected="true" aria-controls="professional-panel" tabindex="0">Professional</button>
             <button id="personal-tab" type="button" role="tab" aria-selected="false" aria-controls="personal-panel" tabindex="-1">Personal</button>
         </nav>
 
         <div id="professional-panel" class="site-panel" role="tabpanel" aria-labelledby="professional-tab" tabindex="0">
-        <section class="section-block">
+        <section class="section-block" id="work">
             <h2>Work</h2>
 
             <p>
@@ -203,7 +212,7 @@
             </ul>
         </section>
 
-        <section class="section-block">
+        <section class="section-block" id="open-threads">
             <h2>Open Threads</h2>
 
             <p>
