@@ -356,8 +356,8 @@ a:focus-visible {
 .history-timeline {
     position: relative;
     min-width: 690px;
-    /* Leave room for the last (2026) card so opening it doesn't create a vertical scrollbar. */
-    height: calc(17 * var(--timeline-year-height) + 220px);
+    /* Baseline covers the full 2010–2026 axis. JS extends this only for visible content. */
+    height: calc(17 * var(--timeline-year-height));
     margin-top: 20px;
 }
 .timeline-years {
